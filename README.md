@@ -19,7 +19,7 @@ Miután megvagy, nyisd meg a XAMPP-ot, konfigolni fogunk egy kicsit.
 ![httpdconf](docs/img/httpdconf.png "httpdconf")
 <br>Majd kikeresed a `DocumentRoot` részt és beírod ezen mappa elérését:
 ```
-DocumentRoot "C:/Files/Git/univershitty
+DocumentRoot "C:/Files/Git/univershitty"
 <Directory "C:/Files/Git/univershitty">
 ```
 
