@@ -9,6 +9,7 @@ Welcum bois and gals. Szóval kapni fogtok tőlem egy alapvető ~~picsánrúgás
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [XAMPP](https://www.apachefriends.org/download.html)
 - [Google Chrome](https://www.google.com/chrome/)
+- Regisztráció Github-ra
 
 ## Szépen fogsz és felraksz mindent
 Ezután a Github appal leklónozod ezt a repot a gépedre:
@@ -26,12 +27,23 @@ DocumentRoot "C:/Files/Git/univershitty"
 Ha megvagy, az __Actions__ rész alatt Stop/Start gombbal indítsd újra az Apache modult.
 
 Ezután nyisd meg a Chrome-ot, és a böngésző címsorába írj be ennyit: `localhost` csapj egy entert és ezt kell látnod:
-*böngészőkép.jpg*
+![univershitty](docs/img/univershitty.png "univershitty")
 
+## 0. Git
+    - Alapvető git dolgok
+    - Github
+    - Repok
+    - Commitolás
+    - Branchelés
 ## 1. Fájlok és mappa szerkezet
-
+    - Mappák
+    - Szerkezet
+    - Fájl elnevezések
 ## 2. HTML/CSS
-
+    - Alapfelépítés
+    - Tag-ek
+    - Attribútumok
+    - CSS
 ## 3. Git
 
 ## 4. JavaScript

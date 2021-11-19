@@ -1,0 +1,48 @@
+@font-face {
+    font-family: soopafre;
+    src: url('fonts/soopafre.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: varsity;
+    src: url('fonts/varsity_regular.ttf') format('truetype');
+}
+
+body {
+    background: linear-gradient(0deg, rgba(45,43,73,1) 0%, rgba(1,146,176,1) 100%);
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+}
+
+.center-box {
+    width: max-content;
+    margin: auto;
+    color: white;
+}
+
+.center-box p {
+    font-family: soopafre;
+    margin: 0;
+    font-size: 3em;
+    transform: rotate(-10deg);
+    width: max-content;
+    margin-left: -45px;
+    text-shadow: 0px 0px 20px #0000008a;
+}
+
+.center-box h1 {
+    font-family: varsity;
+    font-size: 6em;
+    font-weight: normal;
+    margin: 0;
+    margin-top: -35px;
+    text-shadow: 0px 0px 70px #00000078;
+}
+
+.center-box h3 {
+    text-align: center;
+    font-family: verdana;
+    font-style: italic;
+    font-size: 1em;
+}
