@@ -44,17 +44,13 @@ Ezután nyisd meg a Chrome-ot, és a böngésző címsorába írj be ennyit: `lo
     - Tag-ek
     - Attribútumok
     - CSS
-    - SCSS/Egyéb dolgok
-## 3. Git
 
-## 4. JavaScript
+## 3. JavaScript
 
-## 5. Alapvető programozás/PHP
+## 4. Alapvető programozás/PHP
 
-## 6. SQL
+## 5. SQL
 
-## 7. Egy alapvető blog összerakása
+## 6. Egy alapvető blog összerakása
 
-## 8. Tesztelési folyamat
-
-## 9. valami
+## 7. Tesztelési folyamat
