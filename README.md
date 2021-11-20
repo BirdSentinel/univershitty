@@ -44,6 +44,7 @@ Ezután nyisd meg a Chrome-ot, és a böngésző címsorába írj be ennyit: `lo
     - Tag-ek
     - Attribútumok
     - CSS
+    - SCSS/Egyéb dolgok
 ## 3. Git
 
 ## 4. JavaScript
