@@ -55,3 +55,5 @@ Ezután nyisd meg a Chrome-ot, és a böngésző címsorába írj be ennyit: `lo
 ## 7. Egy alapvető blog összerakása
 
 ## 8. Tesztelési folyamat
+
+## 9. valami
