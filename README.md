@@ -44,13 +44,20 @@ Ezután nyisd meg a Chrome-ot, és a böngésző címsorába írj be ennyit: `lo
     - Tag-ek
     - Attribútumok
     - CSS
-
 ## 3. JavaScript
-
+    - Változók
+        (Egy változó neve csak angol abc-nek megfelelő betűket tartalmazhat, nem kezdődhet speciális karakterrel, szóval csak betűvel kezdjük, számot tartalmazhaz, de nem lehet az az első karakter, illetve ha szót akarunk benne elválasztani akkor _ használjunk. pl: segg_le1 )
+    - Var/Let/Const
+    - Operátorok
+    - Kondíciók
+    (= baloldaliba beletölti a jobb oldalit, == vizsgálat hogy ugyan az-e, === vizsgálat hogy ugyan az-e plusz megnézi hogy a TIPUSA is ugyan az-e)
+    - DOM manipulálása
+    - For/While ciklus
+    - Switch
 ## 4. Alapvető programozás/PHP
-
+    - *azok mint JS-nél*
 ## 5. SQL
-
+    - This is where the fun begins:)
 ## 6. Egy alapvető blog összerakása
 
 ## 7. Tesztelési folyamat
