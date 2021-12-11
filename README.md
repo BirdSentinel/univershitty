@@ -9,6 +9,7 @@ Welcum bois and gals. Szóval kapni fogtok tőlem egy alapvető ~~picsánrúgás
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [XAMPP](https://www.apachefriends.org/download.html)
 - [Google Chrome](https://www.google.com/chrome/)
+- Regisztráció Github-ra
 
 ## Szépen fogsz és felraksz mindent
 Ezután a Github appal leklónozod ezt a repot a gépedre:
@@ -26,20 +27,37 @@ DocumentRoot "C:/Files/Git/univershitty"
 Ha megvagy, az __Actions__ rész alatt Stop/Start gombbal indítsd újra az Apache modult.
 
 Ezután nyisd meg a Chrome-ot, és a böngésző címsorába írj be ennyit: `localhost` csapj egy entert és ezt kell látnod:
-*böngészőkép.jpg*
+![univershitty](docs/img/univershitty.png "univershitty")
 
+## 0. Git
+    - Alapvető git dolgok
+    - Github
+    - Repok
+    - Commitolás
+    - Branchelés
 ## 1. Fájlok és mappa szerkezet
-
+    - Mappák
+    - Szerkezet
+    - Fájl elnevezések
 ## 2. HTML/CSS
+    - Alapfelépítés
+    - Tag-ek
+    - Attribútumok
+    - CSS
+## 3. JavaScript
+    - Változók
+        (Egy változó neve csak angol abc-nek megfelelő betűket tartalmazhat, nem kezdődhet speciális karakterrel, szóval csak betűvel kezdjük, számot tartalmazhaz, de nem lehet az az első karakter, illetve ha szót akarunk benne elválasztani akkor _ használjunk. pl: segg_le1 )
+    - Var/Let/Const
+    - Operátorok
+    - Kondíciók
+    (= baloldaliba beletölti a jobb oldalit, == vizsgálat hogy ugyan az-e, === vizsgálat hogy ugyan az-e plusz megnézi hogy a TIPUSA is ugyan az-e)
+    - DOM manipulálása
+    - For/While ciklus
+    - Switch
+## 4. Alapvető programozás/PHP
+    - *azok mint JS-nél*
+## 5. SQL
+    - This is where the fun begins:)
+## 6. Egy alapvető blog összerakása
 
-## 3. Git
-
-## 4. JavaScript
-
-## 5. Alapvető programozás/PHP
-
-## 6. SQL
-
-## 7. Egy alapvető blog összerakása
-
-## 8. Tesztelési folyamat
+## 7. Tesztelési folyamat
