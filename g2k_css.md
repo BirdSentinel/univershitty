@@ -1,37 +1,39 @@
-# HTML
-Na elemezzünk egy kis HTML-t.
-
-
-## Tag
-`<div class="center-box"></div>`
-
-Ez, ami fent van, egy _div_ **tag**. Általában HTML-ben a tag-eket `<valami>`-vel kezdjük (azaz kacsacsőrözünk) és `</valami>`-vel fejezzük be. Ezen kettő cucc közé kerülhet bármi. Sima szöveg, vagy további tag-ek. Vannak kivételek, ilyen például az `<img src="www.link.com/kep.jpg"/>` melyet egyből nyitunk és zárunk is. Ezekből mazsolázhatsz bőven a [www.w3schools.com](www.w3schools.com) oldalon. (Ez lesz a Bibliád mostantól, ezzel kelsz, ezzel fekszel, budiba az iPad-en ez lesz a kezdőlapod.)
-
-## Attribútum
-`<a href="https://www.google.com">Link</a>`
-
-Fentebb egy link látható. Ez is ugyan olyan tag mint a div. Ebben láthatunk egy _href_ cuccot, az ilyen cuccokat, amik az első kacsacsőrös nyitóbaszba vannak benne, **attribútumnak** nevezzük. Ezekkel adunk meg az adott tag-nek tulajdonságokat, mint például felül ez a href egy linket jelent. Az attribútumoknak általában az a formája hogy `valami="adat"`. A kettős macskaköröm közé írjuk be a cuccot az egyenlőség jel után.
-
-## CSS classok
-`<div class="center-box"></div>`
-
-Ahogy már fent is láthattad ezt a kódot, ennek a div-nek megadtunk egy `center-box` nevű CSS class-t. Mi a bánat az a class kérded? Ezzel tudunk _.css_ fájlokból stílust megadni a megadott tag-nek. A _class_ (mivel ez is az) attribútumba igazából annyi nevet adhatunk meg amennyit nem szégyellünk, példa:
-
-`<div class="header-text-container center-box colored-box"></div>`
-
-Na most azt láthatjuk hogy 3db class nevet adtunk meg neki, ezekre CSS-ből tudunk majd hivatkozni.
-
-## ID-k
-`<h2 id="title">Párolgó Denevér</h2>`
-
-Fentebb egy cím tag-et láthatunk, megadva egy id-vel. ID, nevéből adódóan egy azonosító. Most a példába megadtunk neki egy "title" nevet. Egy névből csak 1db lehet az oldalon (nem az id=-ből, hanem ugyan olyan nevűből lehet csak egy), írhatsz többet is ha hülye vagy, de mindig csak a legelsőt fogja megtalálni ha ráhivatkozol pl JavaScript-ből. Mire jó ez? Formailag nagyobb dolgok azonosítására szoktunk használni, mint pl egy sidebar, header stb. Illetve így JavaScript-ből nagyon egyszerű megtalálni az adott elemet, példa:
-
-`document.getElementById("title").innerHTML`
-
-Ez visszaadja nekünk a _title_ elem tartalmát.
-
 # CSS
-Ezt nagyon nem is húznám, minden fiszemfaszom formázást meg css stílust megtalálsz a [Bibliában](www.w3schools.com).
+Ezt nagyon nem is húznám, minden fiszemfaszom formázást meg css stílust megtalálsz a [Bibliában](https://www.w3schools.com/css/).
+
+## Hogyan húzunk be stílusokat a HTML oldalunkra?
+
+Erre két fő lehetőségünk van, az első és a legtisztább, hogy a `<head>` tagbe behúzzunk a css fájlunkat:
+
+`<link rel="stylesheet" href="styles/main.css">`
+
+A második pedig az, hogy a html-be a `<head>` és a `<body>` tag közé berakunk egy ilyet:
+
+```
+<head>
+    <title>Zack's Univershitty</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <meta charset="UTF-8">
+</head>
+<style>
+.center-box {
+    margin: auto;
+}
+
+.center-box p {
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+}
+</style>
+<body>
+    <div class="center-box">
+        <p>Ez lesz az oldalad alapja!</p>
+    </div>
+</body>
+```
+
+Jól látod, csináltunk oda egy `<style></style>` tag-et, amibe elkezdtük írni a css-t, ugyan úgy mint egy külön .css fájlba. Ezt amúgy ilyen borzasztó egyszerű oldalakra szoktuk használni, ahol max 4-5 css stílus van és ezért nem akarunk új fájlt nyitni neki, vagy mondjuk van egy fain PHP-s oldalunk, és adatbázisból akarjuk behúzni a bejelentkezett paraszt egyedi hátterét az oldalra, akkor csinálunk egy style tag-et amit php-ból generálunk, a betöltött .jpg képpel. Egyébként minden mást szépen rakosgassunk el a megfelelő .css fájlokba.
 
 ## Hogyan raksz stílus a HTML-ben megadott class="valami"-re?
 Megnyitod szépen a css fájlod, és így hivatkozol rá:
@@ -264,7 +266,7 @@ Na most hogy csinálom meg, hogy felül írom a "valami fekete" classos szöveg 
 }
 
 .container .valami.fekete .text {
-    color: black;
+    color: blue;
 }
 ```
 
@@ -291,3 +293,41 @@ CSS-en kívül egyből a HTML-be is megtudod stílusozni az elemed. De egyébké
 ```
 
 Na most itt beszineztem a div-et fekete hátterűre, a szöveget meg zöldre. Ezt a `style="ideacssedírod"` html attribútummal éred el, szal csak simán bele írod azokat a css stílusokat amiket a CSS-be is írnál. Ha ezt használod, ez felsőbb rendű lesz a css classoknál. Szal ha te előtte css-be megadtad hogy legyen kék a háttérbe, de amúgy ott egy "style" attribútumba hogy legyen fekete, akkor fekete lesz.
+
+## Tag-ek stílusozása
+
+Na ne hogy azt hidd, csak úgy tudsz stílusozni, hogy classokat aggatsz mindenre, mivan akkor ha neked van 200 `<p>`-t és te mindegyikre akarsz egyedi stílust? Mindegyikre írsz egy class-t? AHHH, a gondolattól is lerohad az ujjam.
+
+```
+<div class="valami">
+    <h2>Benti fing<span>(nagyon büdi)</span></h2>
+</div>
+```
+
+Van ilyen HTML kódod, és én azt mondod stílusozd meg a "valami" class-on belüli h2-n belüli span-t. Mit csinálsz? Ezt:
+
+```
+.valami h2 span {
+    color: red;
+}
+```
+
+Így most megkerested a "valami" class-on belüli h2-n belüli span-t! Ha megnézed, én itt most a css-be se pontot, se #-t nem raktam a nevek elé, hanem csak közvetlen beírtam a tag nevét hogy azt keresem. **Na most ezzel érdemes azért vigyázni**, mert ez a cula úgy működik, hogy mondjuk van egy ilyen HTML-ed:
+
+```
+<div class="valami">
+    <span>Random szöveg</span>
+    <h2>Benti fing<span>(nagyon büdi)</span></h2>
+    <p>Hehehe <span>Ez meg egy P-ben belüli random szöveg</span></p>
+</div>
+```
+
+Na most én azt szeretném ha csak a "Random szöveg" span-t stíluzosd meg, logikusan elkezded azt írni a css-be hogy:
+
+```
+.valami span {
+    color: red;
+}
+```
+
+És akkor elhitted hogy majd a div-en belüli közvetlen span lesz piros, a többi nem... Hát jön a lefagyás amikor megnyitod a böngészőt és látod hogy a "valami" class-os div-en belüli ÖSSZES span piros lett! De mi a bánatért? Azért, mert ez úgy működik, hogy ha csak sima tag-et keresel és azt designolod, akkor a megadott tag-en belüli összes megadott tag-et megfogja találni és ráhúzza azt a stílust! Nem csak azt, ami logikusan jönne, nem, ő belemegy a többi tagbe is, és ha azonbelül van mondjuk az itt megadott span, ráfogja húzni a piros színt. Úgy hogy ezzel csak óvatosan, van haszna, de ritkán használjuk.
