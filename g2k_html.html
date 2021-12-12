@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>g2k_html.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+	/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+	/*---------------------------------------------------------------------------------------------
+	 *  Copyright (c) Microsoft Corporation. All rights reserved.
+	 *  Licensed under the MIT License. See License.txt in the project root for license information.
+	 *--------------------------------------------------------------------------------------------*/
+	
+	body {
+		font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+		font-size: var(--vscode-markdown-font-size, 14px);
+		padding: 0 26px;
+		line-height: var(--vscode-markdown-line-height, 22px);
+		word-wrap: break-word;
+		background-color: rgb(47, 47, 47);
+		color: rgb(215, 215, 215);
+	}
+	
+	#code-csp-warning {
+		position: fixed;
+		top: 0;
+		right: 0;
+		color: white;
+		margin: 16px;
+		text-align: center;
+		font-size: 12px;
+		font-family: sans-serif;
+		background-color:#444444;
+		cursor: pointer;
+		padding: 6px;
+		box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+	}
+	
+	#code-csp-warning:hover {
+		text-decoration: none;
+		background-color:#007acc;
+		box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+	}
+	
+	body.scrollBeyondLastLine {
+		margin-bottom: calc(100vh - 22px);
+	}
+	
+	body.showEditorSelection .code-line {
+		position: relative;
+	}
+	
+	body.showEditorSelection .code-active-line:before,
+	body.showEditorSelection .code-line:hover:before {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 0;
+		left: -12px;
+		height: 100%;
+	}
+	
+	body.showEditorSelection li.code-active-line:before,
+	body.showEditorSelection li.code-line:hover:before {
+		left: -30px;
+	}
+	
+	.vscode-light.showEditorSelection .code-active-line:before {
+		border-left: 3px solid rgba(0, 0, 0, 0.15);
+	}
+	
+	.vscode-light.showEditorSelection .code-line:hover:before {
+		border-left: 3px solid rgba(0, 0, 0, 0.40);
+	}
+	
+	.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+		border-left: none;
+	}
+	
+	.vscode-dark.showEditorSelection .code-active-line:before {
+		border-left: 3px solid rgba(255, 255, 255, 0.4);
+	}
+	
+	.vscode-dark.showEditorSelection .code-line:hover:before {
+		border-left: 3px solid rgba(255, 255, 255, 0.60);
+	}
+	
+	.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+		border-left: none;
+	}
+	
+	.vscode-high-contrast.showEditorSelection .code-active-line:before {
+		border-left: 3px solid rgba(255, 160, 0, 0.7);
+	}
+	
+	.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+		border-left: 3px solid rgba(255, 160, 0, 1);
+	}
+	
+	.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+		border-left: none;
+	}
+	
+	img {
+		max-width: 100%;
+		max-height: 100%;
+	}
+	
+	a {
+		text-decoration: none;
+		color: rgb(133, 133, 255);
+	}
+	
+	a:hover {
+		text-decoration: underline;
+	}
+	
+	a:focus,
+	input:focus,
+	select:focus,
+	textarea:focus {
+		outline: 1px solid -webkit-focus-ring-color;
+		outline-offset: -1px;
+	}
+	
+	hr {
+		border: 0;
+		height: 2px;
+		border-bottom: 2px solid;
+	}
+	
+	h1 {
+		padding-bottom: 0.3em;
+		line-height: 1.2;
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+		border-color: rgb(106, 106, 106);
+	}
+	
+	h1, h2, h3 {
+		font-weight: normal;
+	}
+	
+	table {
+		border-collapse: collapse;
+	}
+	
+	table > thead > tr > th {
+		text-align: left;
+		border-bottom: 1px solid;
+	}
+	
+	table > thead > tr > th,
+	table > thead > tr > td,
+	table > tbody > tr > th,
+	table > tbody > tr > td {
+		padding: 5px 10px;
+	}
+	
+	table > tbody > tr + tr > td {
+		border-top: 1px solid;
+	}
+	
+	blockquote {
+		margin: 0 7px 0 5px;
+		padding: 0 16px 0 10px;
+		border-left-width: 5px;
+		border-left-style: solid;
+	}
+	
+	code {
+		font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+		font-size: 1em;
+		line-height: 1.357em;
+	}
+	
+	body.wordWrap pre {
+		white-space: pre-wrap;
+	}
+	
+	pre:not(.hljs),
+	pre.hljs code > div {
+		padding: 16px;
+		border-radius: 3px;
+		overflow: auto;
+	}
+	
+	pre code {
+		color: var(--vscode-editor-foreground);
+		tab-size: 4;
+	}
+	
+	/** Theming */
+	
+	.vscode-light pre {
+		background-color: rgba(220, 220, 220, 0.4);
+	}
+	
+	.vscode-dark pre {
+		background-color: rgba(10, 10, 10, 0.4);
+	}
+	
+	.vscode-high-contrast pre {
+		background-color: rgb(0, 0, 0);
+	}
+	
+	.vscode-high-contrast h1 {
+		border-color: rgb(0, 0, 0);
+	}
+	
+	.vscode-light table > thead > tr > th {
+		border-color: rgba(0, 0, 0, 0.69);
+	}
+	
+	.vscode-dark table > thead > tr > th {
+		border-color: rgba(255, 255, 255, 0.69);
+	}
+	
+	.vscode-light h1,
+	.vscode-light hr,
+	.vscode-light table > tbody > tr + tr > td {
+		border-color: rgba(0, 0, 0, 0.18);
+	}
+	
+	.vscode-dark h1,
+	.vscode-dark hr,
+	.vscode-dark table > tbody > tr + tr > td {
+		border-color: rgba(255, 255, 255, 0.18);
+	}
+	
+	</style>
+	
+	<style>
+	/* Tomorrow Theme */
+	/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+	/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+	
+	/* Tomorrow Comment */
+	.hljs-comment,
+	.hljs-quote {
+		color: #8e908c;
+	}
+	
+	/* Tomorrow Red */
+	.hljs-variable,
+	.hljs-template-variable,
+	.hljs-tag,
+	.hljs-name,
+	.hljs-selector-id,
+	.hljs-selector-class,
+	.hljs-regexp,
+	.hljs-deletion {
+		color: #c82829;
+	}
+	
+	/* Tomorrow Orange */
+	.hljs-number,
+	.hljs-built_in,
+	.hljs-builtin-name,
+	.hljs-literal,
+	.hljs-type,
+	.hljs-params,
+	.hljs-meta,
+	.hljs-link {
+		color: #f5871f;
+	}
+	
+	/* Tomorrow Yellow */
+	.hljs-attribute {
+		color: #eab700;
+	}
+	
+	/* Tomorrow Green */
+	.hljs-string,
+	.hljs-symbol,
+	.hljs-bullet,
+	.hljs-addition {
+		color: #718c00;
+	}
+	
+	/* Tomorrow Blue */
+	.hljs-title,
+	.hljs-section {
+		color: #4271ae;
+	}
+	
+	/* Tomorrow Purple */
+	.hljs-keyword,
+	.hljs-selector-tag {
+		color: #8959a8;
+	}
+	
+	.hljs {
+		display: block;
+		overflow-x: auto;
+		color: #c6c6c6;
+		padding: 0.5em;
+	}
+	
+	.hljs-emphasis {
+		font-style: italic;
+	}
+	
+	.hljs-strong {
+		font-weight: bold;
+	}
+	</style>
+	
+	<style>
+	/*
+	 * Markdown PDF CSS
+	 */
+	
+	 body {
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+		padding: 0 12px;
+	}
+	
+	pre {
+		background-color: #222222;
+		border: 1px solid #000000;
+		border-radius: 3px;
+		overflow-x: auto;
+		white-space: pre-wrap;
+		overflow-wrap: break-word;
+	}
+	
+	pre:not(.hljs) {
+		padding: 23px;
+		line-height: 19px;
+	}
+	
+	blockquote {
+		background: rgba(127, 127, 127, 0.1);
+		border-color: rgba(0, 122, 204, 0.5);
+	}
+	
+	.emoji {
+		height: 1.4em;
+	}
+	
+	code {
+		font-size: 14px;
+		line-height: 19px;
+	}
+	
+	/* for inline code */
+	:not(pre):not(.hljs) > code {
+		color: #C9AE75; /* Change the old color so it seems less like an error */
+		font-size: inherit;
+	}
+	
+	/* Page Break : use <div class="page"/> to insert page break
+	-------------------------------------------------------- */
+	.page {
+		page-break-after: always;
+	}
+	
+	</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="html">HTML</h1>
+<p>Na elemezzünk egy kis HTML-t.</p>
+<h2 id="d%C3%B6-b%C3%A9ziksz">Dö béziksz</h2>
+<p>Hogy mi is az a HTML? Az Amerikaiak 11%-a azt hiszi hogy egy nemi betegség (<a href="https://time.com/12410/11-of-americans-think-html-is-an-std/">Erről tanulmány</a>), te meg azt hiszed hogy egy <em>programozási nyelv</em>, heh, nope. Ez egy markup nyelv, mivel még egy if/else-t se tartalmaz, így nem mondható programnyelvnek, ezért ha csajozol és kérdezik miben programozol ne mondd azt hogy HTML mert még ők is kiröhögnek.</p>
+<p>Na nézzünk meg egy példát, hogy nézki egy alap HTML oldal:</p>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Zack's Univershitty&lt;/title&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class=&quot;center-box&quot;&gt;
+            &lt;p&gt;Ez lesz az oldalad alapja!&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</div></code></pre>
+<p>Huha ide látom hogy beakadtál mint az orsó fék, hogy mi a bánat ez, na menjünk rajta végig szépen sorban.</p>
+<p><code>&lt;!DOCTYPE html&gt;</code></p>
+<p>Minden HTML fájlod legelső sora ez lesz, mivel ezzel mondod meg a böngészőnek hogy ez egy HTML5-ös fájl lesz. (Amúgy működik enélkül is, de na... formalitás.)</p>
+<p><code>&lt;html&gt;&lt;/html&gt;</code></p>
+<p>Ezen tag közé rakod az egész oldal tartalmát, mindent. Ezenkívül nem írunk semmi HTML related dolgot.</p>
+<p>Majd a <code>&lt;html&gt;</code> tagen belül található 2 fő tag.</p>
+<pre class="hljs"><code><div>&lt;head&gt;
+    &lt;title&gt;Zack's Univershitty&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;/head&gt;
+</div></code></pre>
+<p>A <code>&lt;head&gt;</code>-en belül adunk meg olyan dolgokat mint például az oldal címe (amit látsz a tabon felül), húzunk be az oldalra CSS és JavaScript fájlokat, példa a CSS fájl betöltésére:</p>
+<p><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;</code></p>
+<p>Ezzel betöltjük a &quot;styles&quot; mappán belüli main.css stílusfájlt.</p>
+<p>Ezután található egy piszok fontos sor, amit minden (legalábbis magyar ékezetes) oldalra beírunk!</p>
+<p><code>&lt;meta charset=&quot;UTF-8&quot;&gt;</code></p>
+<p>Hogy mit csinál ez? Na csinálj egy HTML oldalt, írj bele magyar ékezetes szöveget, főleg hosszú ŰŐÍ betűkkel, és nézd meg mit fogsz látni a böngésződbe. Beírtad hogy &quot;Árvíztűrő tükörfúrógép&quot; erre azt látod a böngészőbe hogy: &quot;ÃrvÃ­ztÅ±rÅ‘ tÃ¼kÃ¶rfÃºrÃ³gÃ©p&quot;... (Van amikor amúgy enélkül is normálisan látod a szöveget, ez gép beállítástól/böngészőtől is függ, de erre ne alapozzunk, írd oda!!!) Na most azért látod ezt a kusza szöveget, mert nem jó a charset az oldaladon, ezért neked bekell állítani &quot;UTF-8&quot;-ra a megadott sorral, így nem lesznek problémáid az ékezetes szövegekkel.</p>
+<p>...És végül jöjjön a lényeg, amit látni fogunk a weboldalon:</p>
+<pre class="hljs"><code><div>&lt;body&gt;
+    &lt;div class=&quot;center-box&quot;&gt;
+        &lt;p&gt;Ez lesz az oldalad alapja!&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+</div></code></pre>
+<p>A <code>&lt;body&gt;</code> tag! Ami ezen belül van, azt fogja megjeleníteni nekünk a böngésző! A fenti példában azt látod hogy egy div dobozban van benne egy paragraph szöveg. Ha nyomsz a böngésződben egy F12-t, előjön a fejlesztői menü ahol láthatod hogy minden weboldalon a cuccok amiket látsz, az a <code>&lt;body&gt;</code> tag-en belül helyezkednek el.</p>
+<p>Na ennyi lenne az alap, most menjünk bele kicsit részletesebben a dolgokba:</p>
+<h2 id="tag">Tag</h2>
+<p><code>&lt;div class=&quot;center-box&quot;&gt;&lt;/div&gt;</code></p>
+<p>Ez, ami fent van, egy <em>div</em> <strong>tag</strong>. Általában HTML-ben a tag-eket <code>&lt;valami&gt;</code>-vel kezdjük (azaz kacsacsőrözünk) és <code>&lt;/valami&gt;</code>-vel fejezzük be. Ezen kettő cucc közé kerülhet bármi. Sima szöveg, vagy további tag-ek. Vannak kivételek, ilyen például az <code>&lt;img src=&quot;www.link.com/kep.jpg&quot;/&gt;</code> melyet egyből nyitunk és zárunk is. Ezekből mazsolázhatsz bőven a <a href="https://www.w3schools.com/html/">www.w3schools.com</a> oldalon. (Ez lesz a Bibliád mostantól, ezzel kelsz, ezzel fekszel, budiba az iPad-en ez lesz a kezdőlapod.)</p>
+<h2 id="attrib%C3%BAtum">Attribútum</h2>
+<p><code>&lt;a href=&quot;https://www.google.com&quot;&gt;Link&lt;/a&gt;</code></p>
+<p>Fentebb egy link látható. Ez is ugyan olyan tag mint a div. Ebben láthatunk egy <em>href</em> cuccot, az ilyen cuccokat, amik az első kacsacsőrös nyitóbaszba vannak benne, <strong>attribútumnak</strong> nevezzük. Ezekkel adunk meg az adott tag-nek tulajdonságokat, mint például felül ez a href egy linket jelent. Az attribútumoknak általában az a formája hogy <code>valami=&quot;adat&quot;</code>. A kettős macskaköröm közé írjuk be a cuccot az egyenlőség jel után.</p>
+<h2 id="css-classok">CSS classok</h2>
+<p><code>&lt;div class=&quot;center-box&quot;&gt;&lt;/div&gt;</code></p>
+<p>Ahogy már fent is láthattad ezt a kódot, ennek a div-nek megadtunk egy <code>center-box</code> nevű CSS class-t. Mi a bánat az a class kérded? Ezzel tudunk <em>.css</em> fájlokból stílust megadni a megadott tag-nek. A <em>class</em> (mivel ez is az) attribútumba igazából annyi nevet adhatunk meg amennyit nem szégyellünk, példa:</p>
+<p><code>&lt;div class=&quot;header-text-container center-box colored-box&quot;&gt;&lt;/div&gt;</code></p>
+<p>Na most azt láthatjuk hogy 3db class nevet adtunk meg neki, ezekre CSS-ből tudunk majd hivatkozni.</p>
+<h2 id="id-k">ID-k</h2>
+<p><code>&lt;h2 id=&quot;title&quot;&gt;Párolgó Denevér&lt;/h2&gt;</code></p>
+<p>Fentebb egy cím tag-et láthatunk, megadva egy id-vel. ID, nevéből adódóan egy azonosító. Most a példába megadtunk neki egy &quot;title&quot; nevet. Egy névből csak 1db lehet az oldalon (nem az id=-ből, hanem ugyan olyan nevűből lehet csak egy), írhatsz többet is ha hülye vagy, de mindig csak a legelsőt fogja megtalálni ha ráhivatkozol pl JavaScript-ből. Mire jó ez? Formailag nagyobb dolgok azonosítására szoktunk használni, mint pl egy sidebar, header stb. Illetve így JavaScript-ből nagyon egyszerű megtalálni az adott elemet, példa:</p>
+<p><code>document.getElementById(&quot;title&quot;).innerHTML</code></p>
+<p>Ez visszaadja nekünk a <em>title</em> elem tartalmát.</p>
+
+</body>
+</html>

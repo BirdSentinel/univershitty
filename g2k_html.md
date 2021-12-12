@@ -72,7 +72,7 @@ Na ennyi lenne az alap, most menjünk bele kicsit részletesebben a dolgokba:
 ## Tag
 `<div class="center-box"></div>`
 
-Ez, ami fent van, egy _div_ **tag**. Általában HTML-ben a tag-eket `<valami>`-vel kezdjük (azaz kacsacsőrözünk) és `</valami>`-vel fejezzük be. Ezen kettő cucc közé kerülhet bármi. Sima szöveg, vagy további tag-ek. Vannak kivételek, ilyen például az `<img src="www.link.com/kep.jpg"/>` melyet egyből nyitunk és zárunk is. Ezekből mazsolázhatsz bőven a [www.w3schools.com](https://www.w3schools.com/html/ oldalon. (Ez lesz a Bibliád mostantól, ezzel kelsz, ezzel fekszel, budiba az iPad-en ez lesz a kezdőlapod.)
+Ez, ami fent van, egy _div_ **tag**. Általában HTML-ben a tag-eket `<valami>`-vel kezdjük (azaz kacsacsőrözünk) és `</valami>`-vel fejezzük be. Ezen kettő cucc közé kerülhet bármi. Sima szöveg, vagy további tag-ek. Vannak kivételek, ilyen például az `<img src="www.link.com/kep.jpg"/>` melyet egyből nyitunk és zárunk is. Ezekből mazsolázhatsz bőven a [www.w3schools.com](https://www.w3schools.com/html/) oldalon. (Ez lesz a Bibliád mostantól, ezzel kelsz, ezzel fekszel, budiba az iPad-en ez lesz a kezdőlapod.)
 
 ## Attribútum
 `<a href="https://www.google.com">Link</a>`

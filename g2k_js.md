@@ -281,7 +281,7 @@ if ("Labda" != "Gömböc") {
 Nem egyenlő az érték, vagy nem egyezik a tipus.
 
 ```
-if (5 != "10") {
+if (5 !== "10") {
     console.log("yes");
 }
 
@@ -370,7 +370,7 @@ Itt most láthatjuk hogy "yes", mivel "ÉS" operátort használtunk arra, hogy 5
 
 ## "||" operátor
 
-"VAGY" operátor, azaz akkor fog true-t adni, ha a két oldalán legalább az egyik dolog igaz.
+"VAGY" operátor, az akkor fog true-t adni, ha a két oldalán legalább az egyik dolog igaz.
 
 ```
 if (5 > 2 || 2 == 3) {
@@ -539,3 +539,62 @@ console.log(total_function);
 ```
 
 A fenti funkciónkba azt csináltuk, hogy a "sum()" zárójelébe megadtunk két változót, amit később majd elvárunk amikor meghívjuk a funkciónkat. Jelen esetbe két változót adtam meg, amiknek az a neve hogy number1 és number2. Ezeket a változókat tudjuk később használni a funkciónkba. Én most azt csináltam itt, hogy a két számot összeadtam egy "total" változóba, majd ezt vissza return-öljük. Később pedig egy "total_function" nevű változóba meghívtam ezt a funkciót, ahol megadtam neki hogy a 2 meg 3 számot adja össze, és ugye mint fentebb is említettem, vissza ad egy értéket, jelen esetbe az összeadott két számot, ami 5 lesz, és ezt hogy lássuk, "console.log"-al kiírjuk.
+
+# Adattípusok
+
+Előzőleg már beszéltünk a számokról, és a szövegekről, nézzünk meg még két új dolgot.
+
+## Boolean
+
+A boolean két értékű adattipus. Azaz vagy "true" vagy "false". Ezek megfelelője lehet még az "1" és a "0", mivel programozási nyelvekben az 1 az true-t jelent, a 0 false. De maradjunk a "true" és "false" értékeknél, mivel ezek a boolean-ok.
+
+```
+var ezigaz = true;
+var eznemigaz = false;
+
+if (ezigaz) {
+    console.log("igaz bizony.");
+}
+```
+
+Ez kifogja írni hogy "igaz bizony" mivel az "ezigaz" változónak true az értéke, és ugye az if azt várja el.
+
+Amikor egy vizsgálatot csinálunk, mint például:
+
+```
+var valami = 3 > 2;
+console.log(valami);
+```
+
+akkor azt látjuk, hogy "true" lett a "valami" változó értéke, azért, mert megadtunk egy vizsgálatot neki hogy három nagyobb-e mint kettő, arra visszakapta azt hogy "true" és ez került a változóba.
+
+## Tömb
+
+A tömb is egy adattípus, arra jó, hogy egy változóban egyszerre több adatot tároljunk el.
+
+```
+var tomb = ["Kiscica", "Kiskutya", "Bicikli"];
+```
+
+Így hozunk létre egy tömböt, szögletes zárójellel, és vesszővel választjuk el benne az adatokat. Természetesen nem csak szöveg kerülhet bele, bármilyen adatot bele írhatunk. Szöveget, számot, booleant stb...
+
+Hogyan tudunk adatot kiolvasni belőle? Hát értelem szerűen egyszerre csak egy dolgot akarunk kiolvasni belőle, azt így tudjuk megtenni:
+
+```
+var tomb = ["Kiscica", "Kiskutya", "Bicikli"];
+console.log(tomb[0]);
+```
+
+Ezzel a konzolba azt fogjuk látni hogy "Kiscica". A `tomb[0]` változó megjelenítésével megjelenítettük a tömb első elemét. Azért 0, mert PHP-ban a számolást 0-tól kezdjük, azaz a tömbnek a 0.-ik eleme az első, az 1 a második és így tovább.
+
+Hogyan tudjuk okosan kiiratni a tömb minden elemét? Nyilván nem akarjuk kézzel megirogatni hogy `tomb[0]; tomb[1];` stb... Használjuk az előzőleg tanult for ciklust!
+
+```
+var tomb = ["Kiscica", "Kiskutya", "Bicikli"];
+
+for (var i = 0; i < tomb.length; i++) {
+    console.log(tomb[i]);
+}
+```
+
+Ha ezt lefuttatjuk, szépen sorban kiírja a tömb összes elemét. Hogyan működik ez? A for ciklusba megadtuk azt, hogy addig fusson amekkora a tömb mérete, ezt úgy adtuk meg hogy a `tomb.length` paranccsal megkaptunk számba hogy mennyi elem van a tömbbe, jelen esetbe ez 3, szóval 3szor fog lefutni a for ciklus. Utánna pedig ugye már tanultuk hogy a for ciklusban az `i` változó növekszik mindig, hogy éppen hol jár a ciklus. Szóval ahogy előbb írtam hogy `tomb[0]`-val jelenítem meg a tömb első elemét, ezt a számot kell növelni. Szóval logikusan beírjuk hogy `tomb[i]` így ahogy fut a for ciklus, mindig az aktuális elemet fogja kiírni.
