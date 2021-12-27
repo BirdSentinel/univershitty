@@ -4,11 +4,237 @@ Na ha túlszenvedted magad a JavaScript doksin, igazából itt már nem fogsz me
 
 ## Mi az a PHP?
 
+A PHP egy internet által nagyrészt használt programozási nyelv, mely backend-en fut, és van annyira erős hogy komplex projektekre is alkalmas legyen. Például tudtad hogy a Facebook is PHP-val készült?! Oké a Facebook egy rák, de na, azért mégis csak nagy cucc és ezzel megy, szóval itt a lehetőséged hogy alkoss valamit jobbat! De hogyan is nézki egy PHP fájl? Először is, fusson a gépeden a XAMPP az Apache-al elindítja, és legyen egy `index.php` fájlod amibe most írd bele ezt:
 
+```
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PHP gyakorló oldalam</title>
+    </head>
+    <body>
 
-## todo: átírni a js doksit php-ra
+        <?php
+            echo "Sup bro, PHP-ból lettem kiírva!";
+        ?>
 
-## PHP related things
+    </body>
+</html>
+```
+
+Most azt fogod látni hogy PHP-ból sikeresen kiírtál egy szöveget HTML-be! Ezzel az alapkóddal igazából mehetsz is tovább a doksi további részében gyakorolni.
+
+# Az alapok
+
+## Változók
+
+Ahogy azt már a JS doksiban is olvashattad, minden programozási nyelvben vannak változók. Változóknak nevezzük azt, amiben valamilyen értéket vagy adatok tárolunk, legyen az szöveg, vagy szám stb. Nézzünk példát:
+
+```
+<?php
+$txt = "univershitty.hu";
+echo "Legjobb egyetem a " . $txt . "!";
+//Legjobb egyetem a univershitty.hu!
+?>
+```
+
+Itt azt láthatjuk hogy létrehoztunk egy változót majd ki is irattuk az értékét echo-val! Nézzük még pár példát változókra:
+```
+<?php
+$text = "Ez a sima string szöveg";
+$number = 69; //nice
+$array = ["Ez", "egy", "tömb!"];
+$boolval = true;
+
+$person = ["Name"=>"Jani", "Age"=>41, "Place"=>"Budapest"];
+//Ez pedig egy asszociatív tömb
+?>
+```
+
+Ezeket fogjuk használni majd, jó ha ezeket tudod. PHP változó-t mint láthatod $ jellel kezded, beírod a nevét, és utána az értéket amit meg akarsz adni neki.
+
+**PHP változó nevek létrehozásának a szabályai:**
+
+- A változó mindig $ jellel kezdődik, közvetlen utána a nevével
+- A változó neve betűvel vagy _ -al kell kezdődjön
+- A változó neve nem kezdődhet számmal
+- A változó betűket, számokat és _ -t tartalmazhat (A-z, 0-9 és _)
+- A változó nevek case-sensitive-ek, szóval a `$age` és `$AGE` két külön változónak számít!
+
+## Hogyan iratjuk ki a változókat?
+
+Vegyük példának az előző kódunk:
+
+```
+<?php
+$text = "Ez a sima string szöveg";
+$number = 69; //nice
+echo $text;
+echo $number;
+
+$array = ["Ez", "egy", "tömb!"];
+print_r($array);
+//a print_r-el az egész tömböt kiiratjuk
+echo $array[1];
+//itt pedig kiirattuk a második elemét a tömbnek
+
+$boolval = true;
+echo $boolval;
+
+$person = ["Name"=>"Jani", "Age"=>41, "Place"=>"Budapest"];
+//Ez pedig egy asszociatív tömb
+print_r($person);
+//Ezzel kiirattuk az egész tömböt
+echo $person["name"];
+//Ezzel pedig kiiratuk a tömb "name" értékét
+?>
+```
+
+## Asszociatív tömbök
+
+JS-ben már megismerkedhettünk az alap változókkal, amik ugyan azok mint itt is, példát adtam rá, ugyan azt a megfogalmazást mégegyszer nem írom le. Viszont az asszociatív tömböket itt kiemelném, még pedig azért is mert jó ha ezt tudjuk hogy működik, mivel majd később amikor adatbázisból olvasunk ki adatot, azt is ugyan így fogjuk vissza kapni!
+
+```
+<?php
+$person = ["Name"=>"Jani", "Age"=>41, "Place"=>"Budapest"];
+?>
+```
+
+A fenti példában egy asszociatív tömböt láthatunk, ez annyiban különbözik a sima tömbtől, hogy még a sima tömbben számokkal azonosítjuk melyik tömb elemre vagyunk kíváni, itt minden tömb elemnek van egy neve, és később azokkal azonosítjuk/hívjuk meg őket, például itt most kiiratom a nevet és az életkort:
+
+```
+<?php
+$person = ["Name"=>"Jani", "Age"=>41, "Place"=>"Budapest"];
+echo $person["Name"];
+echo $person["Age"];
+?>
+```
+
+# Operátorok és változók kezelése
+
+Az operátorok és a változók kezelése szintén hót ugyan az mint JavaScript-ben, csak ugye még ott a változók `var valami`-k voltak, itt `$valami` lesz. De azért nézzünk rá példát.
+
+## Érték változtató operátorok
+
+**= jel operátor**
+
+Ezzel adunk meg értéket egy változónak.
+
+```
+$valami = "csirip";
+```
+
+**+ és . operátor**
+
+Na itt már jön egy fricska, még JS-ben csak + jellel adtunk össze dolgokat, itt már a . (pont) is jön. De miben különböznek?
+
+```
+<?php
+$text1 = "Kiscica";
+$text2 = "Kiskutya";
+$texts = $text1.$text2; //KiscicaKiskutya
+
+$number1 = 5;
+$number2 = 2;
+$sum = $number1+$number2; //7
+$sum2 = $number1.$number2; //52
+?>
+```
+
+A fenti példában is látható, hogy még . -al egymás mellé raktam a változókat, a +-al szám változókat adtam össze. Erre láthatod a példában hogy mi történt amikor a két számot +-al és .-al adtam össze. Így tudsz változókat összerakni PHP-ban, de nézzünk még erre példát:
+
+```
+<?php
+$text1 = "Kiscica";
+$text2 = "Kiskutya";
+$texts = "A ".$text1." nem mindig ".$text2."!";
+echo $texts; //A Kiscica nem mindig Kiskutya!
+?>
+```
+
+Itt arra láthatunk példát hogy sima szöveget és változókat rendeltünk össze, majd 1 szövegként kezeltük őket és kiirattuk őket! Viszont felmerülhet benned, hogy jó jó szöveget iratok ki, de mivan ha én "-t azaz macskakörmöt is megakarok jeleníteni a szövegben? Mert mondjuk HTML-t akarok generálni és ugye abba lehetnek macskakörmök az attribútumok miatt? Semmi gond!
+
+```
+<?php
+$text = "Kiscica";
+$texts = "<a href=\"https://www.google.com/keressmagadnak\">".$text."</a>";
+echo $texts;
+?>
+```
+
+Ennek az eredménye lett az hogy: `<a href="https://www.google.com/keressmagadnak">Kiscica</a>` ami egy HTML kompatibilis "szöveg" amit kiirattunk. Mint látodhatod, a macskakörmöt a szövegen belül úgy belenítettük meg hogy eléraktunk egy \ jelet, majd pontokkal összeraktuk a szöveget még változóval kiegészítve.
+
+**További operátorok**
+
+Ahogy már azt fentebb is említettem, a JavaScript-ben használható operátorok 1:1 megegyeznek a PHP-sokkal. De, nézzünk azért 1-2 példát:
+
+```
+<?php
+//ez ugye a += operátorunk
+$number1 = 2;
+$number2 = 5;
+$number1 += 5;
+echo $number1; //7
+
+//Itt ugye az else ág fog lefutni mert nem igaz a feltétel...
+if ($number1 == $number2) {
+    echo "Egyenlő volt a két szám";
+} else {
+    echo "Nem volt egyenlő a két szám";
+}
+
+//Itt pedig igaz lesz a feltétel
+if ($number1 < $number2) {
+    echo "Az első szám kissebb mint a második";
+}
+?>
+```
+
+# if, for, while
+
+A címben említett funkciók is ugyan azzal működéssel bírnak mint javascriptben, írok rájuk azért 1-1 példát:
+
+```
+$number1 = 2;
+$number2 = 5;
+
+//Itt ugye az else ág fog lefutni mert nem igaz a feltétel...
+if ($number1 == $number2) {
+    echo "Egyenlő volt a két szám";
+} else {
+    echo "Nem volt egyenlő a két szám";
+}
+
+for ($i = 0; $i < 100; $i++) {
+    echo $i.". For ciklus eheeh\n";
+}
+
+$name = "Jani";
+
+switch ($name) {
+    case "Béla":
+        echo "Ő Béla";
+        break;
+    case "Jani":
+        echo "Ő Jani";
+        break;
+    case "Zoli":
+        echo "Ő Zoli";
+        break;
+    case "Árpád":
+        echo "Ő Árpád";
+        break;
+    case "Pisti":
+        echo "Ő Pisti";
+        break;
+    default:
+        echo "Egyik sem!";
+}
+```
+
+Látjátok? Ugyan az mint amit JS-ben tanultatok, csak ugye a PHP-s változókat írjuk bele, na meg ugye ott console.log-al irattam ki a példákat, itt echo-val.
+
+# PHP related things
 
 Na most hogy túlszenvedted magad a repetitív részen, nézzük milyen újdonságok vannak a PHP-ba.
 
@@ -87,4 +313,270 @@ Na ha ezt most lefuttatod látod hogy 100-szor kiírtuk az oldal címét egymás
 
 Na most hogy megvagyunk azzal a koncepcióval hogy kell PHP-ból HTML-be kiírni dolgokat, vágjunk bele egy kicsit extrémebb dologba: Csatlakozzunk SQL adatbázishoz és irassunk ki onnan tartalmat!
 
-## Csatlakozás adatbázishoz
+# Néhány hasznos cucc PHP-ban
+
+Ezeket jó ha tudod, hasznos kis cuccok, sok jóság létrehozásában segítenek.
+
+## intval()
+
+Az `intval()` függvényt arra szoktam használni hogy leellenőrizzem hogy egy adott változó tuti szám-e. Na most ez úgy működik hogy egy változót kér be, aztán mindenféleképpen valami számot fog visszaadni. Példák:
+
+```
+<?php
+echo intval(42);                      // 42
+echo intval(4.2);                     // 4
+echo intval('42');                    // 42
+echo intval('+42');                   // 42
+echo intval('-42');                   // -42
+echo intval('asd');                   // 0
+echo intval('asd123');                // 0
+?>
+```
+
+Ha mondjuk szöveg kerül bele akkor 0-át fog visszaadni. Ez tökjó kiszűrni user inputokat, ahol mondjuk a HTML-ből csak számot kérnénk vissza, de mókás gyerek ismeri az inspectort és szöveget írna be, akkor ezzel letudod szűrni hogy te mondjuk az adatbázis fele mindenféleképpen számot küldj tovább, legrosszabb esetben egy 0-át.
+
+## mb_strlen()
+
+Az `mb_strlen()` függvényt stringek hosszúságának számolására használjuk. Azaz ha adunk neki egy szöveget, visszaadja számba hogy hány karakter hosszú. Példák:
+
+```
+<?php
+$mystring = "kiskutya";
+echo mb_strlen($mystring);            // 8
+?>
+```
+
+Ezt én például arra szoktam használni, hogy amikor adatbázisból kiiratok valami adatot, megnézem ezzel milyen hosszú szöveget kaptam vissza. Mondjuk például várok valami youtube linket egy embedded videóhoz, és mondjuk csak akkor akarom kirenderelni ha 3-nál több karakter van abba a stringbe, ha mond 1 karakter pl csak béna volt és csak egy space-t írt bele, akkor ne jelenítsem meg.
+
+## header()
+
+Ezzel HTTP header-öket lehet küldeni. Én ezt arra szoktam használni hogy elnavigáljam a user-t valamely másik oldalra. Kicsit bővebben lehet még [olvasni itt](https://www.w3schools.com/php/func_network_header.asp) a funkcióiról. Példa amire én használom:
+```
+<?php
+header("Location: /articles");
+//Ez az articles oldalra átnavigál minket, szóval ha pl www.vulkancapa.hu domainen vagyunk, akkor www.vulkancapa.hu/articles linkre visz át.
+header("Refresh:0");
+//Ezzel pedig teljesen újra töltjük a jelenlegi oldalt
+?>
+```
+
+## isset()
+
+Ezzel lehet megnézni hogy egy változó-t létrehoztak-e vagy nem-e NULL az értéke. Ezt én speciel arra szoktam használni hogy megnézzem bevan-e jelentkezve a paraszt az oldalra, és annak függvényében jelenítem meg mondjuk a gombokat a status baron.
+
+```
+<?php
+if(isset($_SESSION['login_user'])) {
+    //Ha a session-be létezik a bejelentkezett user akkor csinálok vmit
+}
+
+$valami = "asd";
+if (isset($valami)) {
+    //Ez lefog futni mert létezik a $valami változó
+}
+
+if (isset($nemvalami)) {
+    //Ez pedig nem fog lefutni mert nincs $nemvalami változónk
+}
+?>
+```
+
+Egyébként az `isset()` függvény mindig true-t vagy false-t return-öl, így if-ekbe teljesen alkalmas beépíteni ahogy a példában is volt.
+
+## htmlspecialchars()
+
+A `htmlspecialchars()` függvénybe kapott stringet... hogy is mondjam. Nyers html kompatibilissá teszi?... This makes no sense. Szóval konyhanyelven, ha adsz neki egy html stringet és te mondjuk ezt html-be kiakarod printelni, szal hogy a tag-eket is lásd, ezen keresztül nyomasd bele. Ez amúgy tökéletes sanitize-olni is a szöveget, mondjuk egy kis szöveg posztoló cuccot írsz html-be és nem akarod hogy html tageket irogáljanak bele a userek, ezzel nyomasd végig, de nézzük a példát úgy jobban megérted:
+
+```
+<?php
+$test = "<a href='test'>Test</a>";
+$new = htmlspecialchars($test);
+echo $new; // &lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;
+echo $test; //próbáld ki!
+?>
+```
+
+Ha ezt lefuttatod, látod hogy amit a példafüggvényünkön keresztül irattunk ki, azt ténylegesen látjuk a böngészőbe, amit pedig csak simán ki echo-ztunk, rendes HTML kódnak érzékelte!
+
+## Funkciók
+
+Ez egy igencsak fontos része hogy fain PHP kódokat írjunk, meg hogy ne ismételjük önmagunkat. Ha már felfogtad agyilag a JavaScript doksit, ez már nem lesz újdonság, csak megmutatom PHP-ba hogy tudsz ilyet írni.
+
+```
+function myfunction() {
+    echo "Na ezt egy funkcióból echoztunk ki!";
+}
+
+myfunction();
+//És ha ezt meghívjuk, láthatjuk a szöveget... Azért ez ismerős a JS doksiból nem?!
+```
+
+Nézzünk most meg return funkciót is!
+
+```
+function myfunction() {
+    $myvar = "Szövegünk";
+    return $myvar;
+}
+
+$something = myfunction();
+echo $something;
+//Ez pedig a "Szövegünk" szöveget fogja vissza returnölni.
+
+function myboolfunction() {
+    return true;
+}
+
+if (myboolfunction()) {
+    //Ez az if-ünk lefog futni mert a felső function true-t adott vissza.
+}
+```
+
+Most pedig nézzük meg azt, hogy változókat adunk át a funkciónak.
+
+```
+function sum(int $number1, int $number2) {
+    $summed = $number1 + $number2;
+    return $summed;
+}
+
+echo sum(1,2); //3
+```
+
+Ez a funkciók vár 2 változót, amivel kezd valamit, és returnöli az eredményt. Annyit láthatunk itt a JS-es funkciókkal szembe hogy itt LEHET megadni neki tipust, hogy mit várunk el! Itt van még egy példa:
+
+```
+function myfunction(bool $istrue, string $text) {
+    $mytextadd = "nem volt igaz az istrue.";
+    if ($istrue) {
+        $mytextadd = "igaz volt az istrue.";
+    }
+
+    return $text." és ".$mytextadd;
+}
+
+echo myfunction(true,"Heheheh"); //Heheheh és igaz volt az istrue.
+```
+
+És ugye adhatunk meg neki bool-t, string-et, int-et, array-t, object-et stbstb...
+
+Még egy utolsó példa, hogy mivan akkor ha mondjuk egy olyan funkciót akarsz létrehozni ahova néha 1 néha 2 értéket kéne átadni?! Na tudsz olyat, hogy a funkció létrehozásánál egyből megadsz egy kezdőértéket a várni kívánt változónak, és ha meghívásnál nem kapja meg, azt fogja használni és nem fog sírni hogy kevesebb argumentet kapott.
+
+```
+function myfunction(string $text, string $text2 = "Nem adtál meg szöveget") {
+    $mytext = $text.$text2;
+    return $mytext;
+}
+
+echo myfunction("valami"); //valamiNem adtál meg szöveget
+echo myfunction("valami","adtam meg szöveget"); //valamiadtam meg szöveget
+```
+
+## Funkciók és egyéb kódok kiszervezése külön fájlokba
+
+Na most azt tudni illik hogy a jól átlátható kód részben azon is múlik, hogy nem egy darab fájlba van 4500 sornyi kód telefosva mert ember legyen a talpán aki ezt átlátja. Erről bővebben a másik doksiban olvashatsz ahogy kicsit részletesebben elmagyarázom hogy miért fontos hogy értelmes mappákba legyen szétszedve az oldalad, hogyan és miért darabold szét a css fájlaid stb. Na de nézzük meg most a PHP-s részt.
+
+Tegyük fel neked van egy kód részleted amit sok helyen akarsz használni (vagy akár már 2 helyen is), könyörgöm, nehogy elkezd le ctrl+c és ctrl+v-zni minden egyes helyre... Mert majd jön a felismerés hogy egyszer változtatni kéne rajta.
+
+mypage.php
+```
+<?php
+function sum(int $number1, int $number2) {
+    $summed = $number1 + $number2;
+    return $summed;
+}
+
+echo sum(1,2); //3
+echo sum(2,2); //4
+?>
+```
+
+anotherpage.php
+```
+<?php
+function sum(int $number1, int $number2) {
+    $summed = $number1 + $number2;
+    return $summed;
+}
+
+echo sum(5,7); //12
+echo sum(1,8); //9
+?>
+```
+
+Na most nem érzed kicsit furán hogy 2 külön oldalon is ledefiniáltad ugyan azt a kódot? Nem lenne egyszerűbb egy helyről használni őt? Há' dehogynem. Nézzünk meg egy példát ahol a `sum()` funkciónkat külön fájlba szedtem, majd a másik két oldalamba implementáltam:
+
+component_sum.php
+```
+<?php
+function sum(int $number1, int $number2) {
+    $summed = $number1 + $number2;
+    return $summed;
+}
+?>
+```
+
+mypage.php
+```
+<?php
+include("component_sum.php");
+
+echo sum(1,2); //3
+echo sum(2,2); //4
+?>
+```
+
+anotherpage.php
+```
+<?php
+include("component_sum.php");
+
+echo sum(5,7); //12
+echo sum(1,8); //9
+?>
+```
+
+Na itt most azt láthatjuk hogy a funkciónkat külön szedtem egy fájlba, majd azokat beincludeoltam azokba a fájlokba, ahol használni szeretném. Hogy kell ezt elképzelni, hogy működik? Amikor behúzod include-al a fájlt, olyan mintha oda annak a helyére kerülne a kód a másik fájlból, és akkor azt már tudja olvasni a php kódunk. Ugye sorrend itt is számít, szóval ne először hívd meg a funkciók és utána include-old meg nyilván nem fog működni.
+
+Érdemes tudni, hogy nem csak ez az egy módja van hogy behúzz egy másik php file-t a kódodba, mutatok 4 lehetőséget és felhasználási módját:
+
+```
+<?php
+include("component_sum.php");
+//Az include-al simán behúzhatjuk a másik php fájlt, akár többször is egymás után, ez mondjuk arra jó ha mondjuk a HTML-ünkből valami HTML kódot többször akarunk berakni egymás után.
+
+include_once("component_sum.php");
+//Az include_once pedig ugyan azt csinálja mint a sima include, viszont csak EGYSZER töltődik be, többször még véletlenül se tudjuk.
+
+require("component_sum.php");
+//A require-el szintén ugyan úgy betudjuk tölteni a fájlt mint az include-al, viszont a kettő abban tér el egymással, hogy még ha include-al töltünk be valamit, és nem található a fájl, a kód tovább fut és csak egy hibát ír, viszont ha a require-nél nem találja a fájlt, a kód futása is leáll mivel kritikusan fontos fájlt akarunk betölteni amire mindenféleképpen szükségünk van az oldal működéséhez.
+
+require_once("component_sum.php");
+//Ugyan az mint az include_once, szintén csak egyszer töltődik be a fájl, viszont mint a sima require, mindenféleképpen bekell töltenie, anélkül nem fut tovább a kód. Ezt általában adatbázis csatlakozós file betöltéséhez szoktuk használni.
+?>
+```
+
+# TODO: Csatlakozás adatbázishoz
+
+Na ha még ezt is felfogod, ezzel a tudással már képes leszel egy olyan weboldalt létrehozni mint a [vulkancapa.hu](https://www.vulkancapa.hu)! Ez már egy kicsit komplexebb lesz, illetve szükség lesz pár php fájl létrehozására, továbbá erősen ajánlott hogy mielőtt ennek neki vágnál olvasd végig az SQL doksit. Írnám is miket hozz létre milyen tartalommal, aztán neki állok magyarázni:
+
+connection.php
+```
+<?php
+$servername = "localhost:3306";
+$username = "root";
+$password = "";
+$dbname = "mytestdb";
+$conn = new mysqli($servername, $username, $password, $dbname);
+$conn->set_charset("utf8");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+```
+
+# Login
+
+# Regisztráció
+
+# Email küldés
