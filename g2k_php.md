@@ -190,6 +190,22 @@ if ($number1 < $number2) {
 ?>
 ```
 
+**+= és .= operátorok**
+
+JavaScript-ben már megismerkedhettünk a **+=** operátorral, amivel a meglévő változó adatához újabb számot vagy szöveget tudtunk hozzáadni. Na ugye JS-ben a szövegre IS += operátort használtunk, PHP-ban viszont szöveg hozzáadáshoz már a **.=** operátort kell használni. Példa:
+
+```
+<?php
+$text = "Kiscica";
+$text .= " és Kiskutya";
+echo $text; //Kiscica és Kiskutya
+
+$number = 5;
+$number += 3;
+echo $number; //8
+?>
+```
+
 # if, for, while
 
 A címben említett funkciók is ugyan azzal működéssel bírnak mint javascriptben, írok rájuk azért 1-1 példát:
@@ -560,6 +576,8 @@ require_once("component_sum.php");
 
 Na ha még ezt is felfogod, ezzel a tudással már képes leszel egy olyan weboldalt létrehozni mint a [vulkancapa.hu](https://www.vulkancapa.hu)! Ez már egy kicsit komplexebb lesz, illetve szükség lesz pár php fájl létrehozására, továbbá erősen ajánlott hogy mielőtt ennek neki vágnál olvasd végig az SQL doksit. Írnám is miket hozz létre milyen tartalommal, aztán neki állok magyarázni:
 
+Ebben a fájlban definiáljuk le az adatbázis csatlakozást.
+
 connection.php
 ```
 <?php
@@ -575,7 +593,182 @@ if ($conn->connect_error) {
 ?>
 ```
 
+Miután ez megvan, `localhost/phpmyadmin`-ba hozzunk létre egy `mytestdb` nevű adatbázist, aztán futtassuk le rajta ezt a kódot:
+```
+CREATE TABLE my_articles (
+    id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    title varchar(255) NOT NULL,
+    summary varchar(255) NOT NULL,
+    content text,
+    published datetime
+);
+
+INSERT INTO my_articles (title, summary, content, published) VALUES ('Teszt cikk', 'Ez egy nagyon szép teszt cikknek a rövid összefoglalója!', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur libero in nunc consectetur, eget bibendum metus eleifend. Curabitur ligula massa, bibendum id varius ut, malesuada vitae diam. Donec non magna sit amet magna eleifend cursus. Phasellus ac egestas ante, eget egestas mauris. Pellentesque pretium velit at erat dapibus, quis pretium eros pellentesque. Phasellus suscipit lectus elit, ac varius lorem fermentum eleifend. Quisque in tincidunt sem. Proin nec laoreet quam, quis porttitor est.', '2021-12-28 12:34:56');
+
+INSERT INTO my_articles (title, summary, content, published) VALUES ('Még egy szép teszt cikk', 'Nyugi ennek a cikknek sincs értelmes mondani valója.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur libero in nunc consectetur, eget bibendum metus eleifend. Curabitur ligula massa, bibendum id varius ut, malesuada vitae diam. Donec non magna sit amet magna eleifend cursus. Phasellus ac egestas ante, eget egestas mauris. Pellentesque pretium velit at erat dapibus, quis pretium eros pellentesque. Phasellus suscipit lectus elit, ac varius lorem fermentum eleifend. Quisque in tincidunt sem. Proin nec laoreet quam, quis porttitor est.', '2021-12-28 13:51:31');
+```
+
+articleView.php
+```
+<?php
+require("connection.php");
+
+$sql = "SELECT title, summary, content, published FROM my_articles ORDER BY published DESC";
+$sql_read = $conn->prepare($sql);
+$sql_read->execute();
+$data_from_sql = $sql_read->get_result();
+
+if ($data_from_sql->num_rows > 0) {
+    while($row = $data_from_sql->fetch_assoc()) {
+        echo "<div style=\"width: 800px;\">
+            <h2>".$row["title"]."</h2>
+            <b>".$row["published"]."</b>
+            <p>".$row["summary"]."</p>
+            <p>".$row["content"]."</p>
+            <hr>
+        </div>";
+    }
+} else {
+    echo "<h2>Nincs cikk!</h2>";
+}
+?>
+```
+
+Juhuuu! Ha ezeket ügyesen összeraktuk és megnyitjuk a `localhost/articleView.php` oldalt a böngészőnkben akkor látnunk kell a két cikkünket az oldalon! Tök jó hogy ezt most összeraktuk, de megkéne érteni mit csináltunk úgy hogy egyesével menjünk végig a fájlokon:
+
+## connection.php
+
+Célszerű ezt az egészet egy külön fájlba kiszervezni mert úgy is rengeteg oldalon fogjuk használni.
+
+```
+<?php
+//Hozzunk létre itt négy változót, amiben az átláthatóság kedvéért eltároljuk az adatbázis csatlakozáshoz szükséges adatokat
+//Ezek az adatok az alap XAMPP telepítéses címek, nyilván ez változhat, főleg amikor egy bérelt szerverre kitelepítjük az oldalunkat
+$servername = "localhost:3306";
+$username = "root";
+$password = "";
+//Eme felső 3 adat az alap XAMPP-os telepítésnél mindig ez lesz, egyedül az adatbázis nevünk változhat, itt most egy mytestdb nevű adatbázist hozunk létre
+$dbname = "mytestdb";
+
+//Itt egy változóba létrehozunk egy adatbázist csatlakozást a felső adatokkal megadva
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+//Ez a sor itt életed megmentője, hogy ne kelljen az ékezetes karakterek hibáival szarakodni
+$conn->set_charset("utf8");
+
+//És csináljunk egy ilyet is, hogy ha valami nem lenne jó adatbázis csatlakozásnál, írja ki a hibát
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+```
+
+## Az SQL kód
+
+Hát itt most csak egy egyszerű SQL kódot írtam, ahol létrehoztunk egy egyszerű táblázatot és beletöltöttünk két adatot. Erről bővebben tájékozódhatsz az **SQL doksiban** ott úgy is levan írva minden.
+
+## articleView.php
+
+```
+<?php
+//behúzzuk ugye a csatlakozást
+require("connection.php");
+
+//Én úgy szoktam hogy az átláthatóság kedvéért egy külön $sql nevű változóba írom bele az SQL kódot
+$sql = "SELECT title, summary, content, published FROM my_articles ORDER BY published DESC";
+
+//Egy tetszőleges nevű változóba beletöltjük a mysqli-s adatbázis objektumunkat az SQL kóddal amit később kezelni fogunk
+$sql_read = $conn->prepare($sql);
+
+//itt lefuttatjuk az SQL commandot amit felül megadtunk
+$sql_read->execute();
+
+//get_result függvénnyel pedig az eredmény objektumot átadjuk szintén egy tetszőleges nevű változónak
+$data_from_sql = $sql_read->get_result();
+
+
+//leellenőrizzük hogy több sor tálatot kaptunk-e vissza a lekérdezésből mint 0, ha nem, akkor írjuk ki hogy nincs cikk
+if ($data_from_sql->num_rows > 0) {
+    //Ha több sort kaptunk vissza mint 0, akkor egy while ciklussal soronként egy tömbbe átadjuk a találatokat
+    //Majd a ciklusban az asszociatív tömböt amit kaptunk bele, kiiratjuk az adatokat a megfelelő helyre
+    //Itt én most generáltam egy egyszerű kis html-t a cikkünk megjelenítésére
+    while($row = $data_from_sql->fetch_assoc()) {
+        echo "<div style=\"width: 800px;\">
+            <h2>".$row["title"]."</h2>
+            <b>".$row["published"]."</b>
+            <p>".$row["summary"]."</p>
+            <p>".$row["content"]."</p>
+            <hr>
+        </div>";
+    }
+} else {
+    echo "<h2>Nincs cikk!</h2>";
+}
+?>
+```
+
 # Login
+
+Nézzünk meg egy hótegyszerű login-t. Először is csináljunk az adatbázisban egy táblát amiben parasztokat tárolunk:
+
+```
+CREATE TABLE my_users (
+    id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    username varchar(255) NOT NULL,
+    password varchar(255) NOT NULL,
+    displayname varchar(255) NOT NULL
+);
+
+INSERT INTO my_users (username, password, displayname) VALUES ('janiahegyrol','123','Jani');
+INSERT INTO my_users (username, password, displayname) VALUES ('bor','bicikli','Pepsi Béla');
+```
+
+## session.php
+
+Ebben fogjuk eltárolni a bejelentkezett user adatait, illetve célszerű dolog a `connection.php`-t ebbe behúzni, és utánna minden fájlban a `session.php`-t includeolni mivel abban már benne lesz akkor a csatlakozás, és a bejelentkezett user adatai is.
+
+```
+<?php
+require('connection.php');
+session_start();
+
+if(isset($_SESSION['login_user'])) {
+    $user_check = $_SESSION['login_user'];
+
+    $sql = "SELECT id, username, displayname FROM my_users WHERE username=?";
+    $get_user = $conn->prepare($sql);
+    $get_user->bind_param("s", $user_check);
+    $get_user->execute();
+    $get_user_result = $get_user->get_result();
+    $row_get_user = $get_user_result->fetch_assoc();
+
+    $login_session_id = $row_get_user["id"];
+    $login_session_username = $row_get_user["username"];
+    $login_session_displayname = $row_get_user["id"];
+}
+?>
+```
+
+## login.php
+
+Csináljunk egy egyszerű bejelentkező oldalt is.
+
+```
+<?php
+require('session.php');
+
+if(isset($_SESSION['login_user'])){
+    header("location: /");
+}
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+}
+?>
+```
+
+# Logout
 
 # Regisztráció
 
