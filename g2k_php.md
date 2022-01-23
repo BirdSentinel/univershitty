@@ -757,18 +757,92 @@ Csináljunk egy egyszerű bejelentkező oldalt is.
 <?php
 require('session.php');
 
-if(isset($_SESSION['login_user'])){
+// Ha bevagyunk jelentkezve, ne tudjuk megnyitni a login oldalt
+if (isset($_SESSION['login_user'])){
     header("location: /");
 }
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    // Lekérjük a változókat
+    $form_username = $_POST["username"];
+    $form_password = $_POST["password"];
+
+    // Nézzük meg létezik-e a felhasználó
+    // Ez vissza ad egy számot hány darab felhasználó van az adatbázisba
+    $get_exist = $conn->prepare("SELECT count(id) AS countid FROM my_users WHERE username=?");
+    $get_exist->bind_param("s", $form_username);
+    $get_exist->execute();
+    $result_exist = $get_exist->get_result();
+    $row_exist = $result_exist->fetch_assoc();
+    // Nyilvánvalóan 1-et kell kapnunk
+    if ($row_exist["countid"] == 1) {
+        // Kérjük le a user adatait
+        $get_login = $conn->prepare("SELECT username, password FROM my_users WHERE username=?");
+        $get_login->bind_param("s", $form_username);
+        $get_login->execute();
+        $result_login = $get_login->get_result();
+        $row_login = $result_login->fetch_assoc();
+
+        // Kerüljük el a hibát hogy nem ad meg jelszót a user
+        if (mb_strlen($row_login["password"]) < 2) {
+            $row_login["password"] = "";
+        }
+    
+        // Ellenőrizzük le hogy egyezik-e a beírt jelszó az adatbázisban lévővel
+        if ($form_password == $row_login["password"]) {
+            // Ha igen, töltsük be a Session-be a usernevet és küldjük a főoldalra a usert
+            $_SESSION["login_user"] = $form_username;
+            header("Location: /");
+        } else {
+            $error = "Nem megfelelő belépési adatok!";
+        }
+    } else {
+        // Ha 0 vagy valami érthetetlen okból több mint 1-et kapnánk vissza akkor dobjunk hibát
+        $error = "Nem található ilyen felhasználó!";
+    }  
 }
+?>
+
+<form autocomplete="off" action="login.php" method="post" enctype="multipart/form-data">
+    <?php
+        if(isset($error)) {
+            echo "<p class=\"error-title\">".$error."</p>";
+        }
+    ?>
+    <p>Felhasználónév</p>
+    <input type="text" name="username" maxlength="50" placeholder="Felhasználónév">
+    <p>Jelszó</p>
+    <input type="password" name="password" placeholder="Jelszó">
+    <button type="submit">Belépés</button>
+</form>
+```
+
+Létrehoztunk itt egy egyszerű bejelentkezést, a példából a HTML részen kihagytam most a body, html stb tageket a lényeg kedvéért, de amúgy ne hagyjuk ki. (Sőt, gyakorlásnak csináld meg rendesen!) Ezen példában csak a nyers jelszót hasonlítjuk össze, titkosítást most nem használunk, egyenlőre csak értsd meg önmagában hogy működik ez az egész, de ha érdekel, [ezen a linken](https://www.php.net/manual/en/function.password-verify.php) megtalálod a jelszó ellenőrző függvényt.
+
+Ha ezzel megvagy és sikeres a login, legyen egy `index.php` fájlunk aminek ez a tartalma:
+
+```
+<?php
+echo "Üdv ".$login_session_displayname."!";
 ?>
 ```
 
+Amikor sikeres volt a bejelentkezés, ide kell hogy átvigyen az oldal, és ha minden rendben ment a bejelentkezett user nevét kell látnod a böngészőben.
+
 # Logout
+
+Ez egy nevetségesen egyszerű dolog lesz, csinálj egy `logout.php` fájlt:
+
+```
+<?php
+ session_start();
+
+ if(session_destroy()) {
+    header("Location: /");
+ }
+?>
+```
+...és ennyi. Törölni kell a session-t, azaz kijelentkezik a user, és visszakerülünk a főoldalra.
 
 # Regisztráció
 
