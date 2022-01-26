@@ -842,7 +842,7 @@ Ez egy nevetségesen egyszerű dolog lesz, csinálj egy `logout.php` fájlt:
  }
 ?>
 ```
-...és ennyi. Törölni kell a session-t, azaz kijelentkezik a user, és visszakerülünk a főoldalra.
+...és ennyi. Amikor ez megnyitásra kerül, törli az aktuális user session-jét, azaz kijelentkezik a user, és visszakerülünk a főoldalra.
 
 # Regisztráció
 
