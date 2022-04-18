@@ -572,7 +572,7 @@ require_once("component_sum.php");
 ?>
 ```
 
-# TODO: Csatlakozás adatbázishoz
+# Csatlakozás adatbázishoz
 
 Na ha még ezt is felfogod, ezzel a tudással már képes leszel egy olyan weboldalt létrehozni mint a [vulkancapa.hu](https://www.vulkancapa.hu)! Ez már egy kicsit komplexebb lesz, illetve szükség lesz pár php fájl létrehozására, továbbá erősen ajánlott hogy mielőtt ennek neki vágnál olvasd végig az SQL doksit. Írnám is miket hozz létre milyen tartalommal, aztán neki állok magyarázni:
 
@@ -843,7 +843,3 @@ Ez egy nevetségesen egyszerű dolog lesz, csinálj egy `logout.php` fájlt:
 ?>
 ```
 ...és ennyi. Amikor ez megnyitásra kerül, törli az aktuális user session-jét, azaz kijelentkezik a user, és visszakerülünk a főoldalra.
-
-# Regisztráció
-
-# Email küldés

@@ -809,7 +809,7 @@ require_once(&quot;component_sum.php&quot;);
 //Ugyan az mint az include_once, szintén csak egyszer töltődik be a fájl, viszont mint a sima require, mindenféleképpen bekell töltenie, anélkül nem fut tovább a kód. Ezt általában adatbázis csatlakozós file betöltéséhez szoktuk használni.
 ?&gt;
 </div></code></pre>
-<h1 id="todo-csatlakoz%C3%A1s-adatb%C3%A1zishoz">TODO: Csatlakozás adatbázishoz</h1>
+<h1 id="csatlakoz%C3%A1s-adatb%C3%A1zishoz">Csatlakozás adatbázishoz</h1>
 <p>Na ha még ezt is felfogod, ezzel a tudással már képes leszel egy olyan weboldalt létrehozni mint a <a href="https://www.vulkancapa.hu">vulkancapa.hu</a>! Ez már egy kicsit komplexebb lesz, illetve szükség lesz pár php fájl létrehozására, továbbá erősen ajánlott hogy mielőtt ennek neki vágnál olvasd végig az SQL doksit. Írnám is miket hozz létre milyen tartalommal, aztán neki állok magyarázni:</p>
 <p>Ebben a fájlban definiáljuk le az adatbázis csatlakozást.</p>
 <p>connection.php</p>
@@ -1041,8 +1041,6 @@ echo &quot;Üdv &quot;.$login_session_displayname.&quot;!&quot;;
 ?&gt;
 </div></code></pre>
 <p>...és ennyi. Amikor ez megnyitásra kerül, törli az aktuális user session-jét, azaz kijelentkezik a user, és visszakerülünk a főoldalra.</p>
-<h1 id="regisztr%C3%A1ci%C3%B3">Regisztráció</h1>
-<h1 id="email-k%C3%BCld%C3%A9s">Email küldés</h1>
 
 </body>
 </html>
