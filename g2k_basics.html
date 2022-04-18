@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Univershitty - Webdev - Az első lépések</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+	/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+	/*---------------------------------------------------------------------------------------------
+	 *  Copyright (c) Microsoft Corporation. All rights reserved.
+	 *  Licensed under the MIT License. See License.txt in the project root for license information.
+	 *--------------------------------------------------------------------------------------------*/
+	
+	body {
+		font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+		font-size: var(--vscode-markdown-font-size, 14px);
+		padding: 0 26px;
+		line-height: var(--vscode-markdown-line-height, 22px);
+		word-wrap: break-word;
+		background-color: rgb(47, 47, 47);
+		color: rgb(215, 215, 215);
+	}
+	
+	#code-csp-warning {
+		position: fixed;
+		top: 0;
+		right: 0;
+		color: white;
+		margin: 16px;
+		text-align: center;
+		font-size: 12px;
+		font-family: sans-serif;
+		background-color:#444444;
+		cursor: pointer;
+		padding: 6px;
+		box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+	}
+	
+	#code-csp-warning:hover {
+		text-decoration: none;
+		background-color:#007acc;
+		box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+	}
+	
+	body.scrollBeyondLastLine {
+		margin-bottom: calc(100vh - 22px);
+	}
+	
+	body.showEditorSelection .code-line {
+		position: relative;
+	}
+	
+	body.showEditorSelection .code-active-line:before,
+	body.showEditorSelection .code-line:hover:before {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 0;
+		left: -12px;
+		height: 100%;
+	}
+	
+	body.showEditorSelection li.code-active-line:before,
+	body.showEditorSelection li.code-line:hover:before {
+		left: -30px;
+	}
+	
+	.vscode-light.showEditorSelection .code-active-line:before {
+		border-left: 3px solid rgba(0, 0, 0, 0.15);
+	}
+	
+	.vscode-light.showEditorSelection .code-line:hover:before {
+		border-left: 3px solid rgba(0, 0, 0, 0.40);
+	}
+	
+	.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+		border-left: none;
+	}
+	
+	.vscode-dark.showEditorSelection .code-active-line:before {
+		border-left: 3px solid rgba(255, 255, 255, 0.4);
+	}
+	
+	.vscode-dark.showEditorSelection .code-line:hover:before {
+		border-left: 3px solid rgba(255, 255, 255, 0.60);
+	}
+	
+	.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+		border-left: none;
+	}
+	
+	.vscode-high-contrast.showEditorSelection .code-active-line:before {
+		border-left: 3px solid rgba(255, 160, 0, 0.7);
+	}
+	
+	.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+		border-left: 3px solid rgba(255, 160, 0, 1);
+	}
+	
+	.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+		border-left: none;
+	}
+	
+	img {
+		max-width: 100%;
+		max-height: 100%;
+	}
+	
+	a {
+		text-decoration: none;
+		color: rgb(133, 133, 255);
+	}
+	
+	a:hover {
+		text-decoration: underline;
+	}
+	
+	a:focus,
+	input:focus,
+	select:focus,
+	textarea:focus {
+		outline: 1px solid -webkit-focus-ring-color;
+		outline-offset: -1px;
+	}
+	
+	hr {
+		border: 0;
+		height: 2px;
+		border-bottom: 2px solid;
+	}
+	
+	h1 {
+		padding-bottom: 0.3em;
+		line-height: 1.2;
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+		border-color: rgb(106, 106, 106);
+	}
+	
+	h1, h2, h3 {
+		font-weight: normal;
+	}
+	
+	table {
+		border-collapse: collapse;
+	}
+	
+	table > thead > tr > th {
+		text-align: left;
+		border-bottom: 1px solid;
+	}
+	
+	table > thead > tr > th,
+	table > thead > tr > td,
+	table > tbody > tr > th,
+	table > tbody > tr > td {
+		padding: 5px 10px;
+	}
+	
+	table > tbody > tr + tr > td {
+		border-top: 1px solid;
+	}
+	
+	blockquote {
+		margin: 0 7px 0 5px;
+		padding: 0 16px 0 10px;
+		border-left-width: 5px;
+		border-left-style: solid;
+	}
+	
+	code {
+		font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+		font-size: 1em;
+		line-height: 1.357em;
+	}
+	
+	body.wordWrap pre {
+		white-space: pre-wrap;
+	}
+	
+	pre:not(.hljs),
+	pre.hljs code > div {
+		padding: 16px;
+		border-radius: 3px;
+		overflow: auto;
+	}
+	
+	pre code {
+		color: var(--vscode-editor-foreground);
+		tab-size: 4;
+	}
+	
+	/** Theming */
+	
+	.vscode-light pre {
+		background-color: rgba(220, 220, 220, 0.4);
+	}
+	
+	.vscode-dark pre {
+		background-color: rgba(10, 10, 10, 0.4);
+	}
+	
+	.vscode-high-contrast pre {
+		background-color: rgb(0, 0, 0);
+	}
+	
+	.vscode-high-contrast h1 {
+		border-color: rgb(0, 0, 0);
+	}
+	
+	.vscode-light table > thead > tr > th {
+		border-color: rgba(0, 0, 0, 0.69);
+	}
+	
+	.vscode-dark table > thead > tr > th {
+		border-color: rgba(255, 255, 255, 0.69);
+	}
+	
+	.vscode-light h1,
+	.vscode-light hr,
+	.vscode-light table > tbody > tr + tr > td {
+		border-color: rgba(0, 0, 0, 0.18);
+	}
+	
+	.vscode-dark h1,
+	.vscode-dark hr,
+	.vscode-dark table > tbody > tr + tr > td {
+		border-color: rgba(255, 255, 255, 0.18);
+	}
+	
+	</style>
+	
+	<style>
+	/* Tomorrow Theme */
+	/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+	/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+	
+	/* Tomorrow Comment */
+	.hljs-comment,
+	.hljs-quote {
+		color: #8e908c;
+	}
+	
+	/* Tomorrow Red */
+	.hljs-variable,
+	.hljs-template-variable,
+	.hljs-tag,
+	.hljs-name,
+	.hljs-selector-id,
+	.hljs-selector-class,
+	.hljs-regexp,
+	.hljs-deletion {
+		color: #c82829;
+	}
+	
+	/* Tomorrow Orange */
+	.hljs-number,
+	.hljs-built_in,
+	.hljs-builtin-name,
+	.hljs-literal,
+	.hljs-type,
+	.hljs-params,
+	.hljs-meta,
+	.hljs-link {
+		color: #f5871f;
+	}
+	
+	/* Tomorrow Yellow */
+	.hljs-attribute {
+		color: #eab700;
+	}
+	
+	/* Tomorrow Green */
+	.hljs-string,
+	.hljs-symbol,
+	.hljs-bullet,
+	.hljs-addition {
+		color: #718c00;
+	}
+	
+	/* Tomorrow Blue */
+	.hljs-title,
+	.hljs-section {
+		color: #4271ae;
+	}
+	
+	/* Tomorrow Purple */
+	.hljs-keyword,
+	.hljs-selector-tag {
+		color: #8959a8;
+	}
+	
+	.hljs {
+		display: block;
+		overflow-x: auto;
+		color: #c6c6c6;
+		padding: 0.5em;
+	}
+	
+	.hljs-emphasis {
+		font-style: italic;
+	}
+	
+	.hljs-strong {
+		font-weight: bold;
+	}
+	</style>
+	
+	<style>
+	/*
+	 * Markdown PDF CSS
+	 */
+	
+	 body {
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+		padding: 0 12px;
+	}
+	
+	pre {
+		background-color: #222222;
+		border: 1px solid #000000;
+		border-radius: 3px;
+		overflow-x: auto;
+		white-space: pre-wrap;
+		overflow-wrap: break-word;
+	}
+	
+	pre:not(.hljs) {
+		padding: 23px;
+		line-height: 19px;
+	}
+	
+	blockquote {
+		background: rgba(127, 127, 127, 0.1);
+		border-color: rgba(0, 122, 204, 0.5);
+	}
+	
+	.emoji {
+		height: 1.4em;
+	}
+	
+	code {
+		font-size: 14px;
+		line-height: 19px;
+	}
+	
+	/* for inline code */
+	:not(pre):not(.hljs) > code {
+		color: #C9AE75; /* Change the old color so it seems less like an error */
+		font-size: inherit;
+	}
+	
+	/* Page Break : use <div class="page"/> to insert page break
+	-------------------------------------------------------- */
+	.page {
+		page-break-after: always;
+	}
+	
+	</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="az-els%C5%91-l%C3%A9p%C3%A9sek">Az első lépések</h1>
+<p>Ebben a doksiban összeszedtem az első lépéseket, hogy miket kell felraknod a gépedre hogy elkezd magadba tömni ezeket a doksikat.</p>
+<h2 id="programok">Programok</h2>
+<p>Ezeket igazából csak én javaslom, mindegyikre van egy tonna alternatíva, kinek mi jön be, mindet ki kell próbálni. Személyszerint én is kezdtem Notepad++-al, majd Atom majd végül évek óta megragadtam a Visual Studio Code-nál. Ebben a webfejlesztősdiben az a szép hogy millió féle tool-al és hozzáállással lehet csinálni. Na meg hát az oprendszerek, ott is ugye vannak eltérések ki milyen programot használ. Én Mac user vagyok egy ideje, de tudom hogy nagyrészetek Windows-t használ, ezért ezt a tutorial-t is úgy igazítom most.</p>
+<h3 id="git">Git</h3>
+<p>Én a <a href="https://github.com/">Github</a>-ot részesítem Git-ezéshez előnyben. Mire jó ez nekünk? Tegyük fel hetek óta dolgozol a fancy weblapodon a kis lapostopodon, jön Cirmi macskád és telibehugyálja szónélkül a géped, rip SSD, rip adat, rip munkád. Még egy jó példa. Dolgozol valamin, megcsináltad. 1 hét múlva észreveszed hogy nem működik ott a kódod, de nem vágod mi tette tönkre. Semmi nyomod nincs visszakövetni a változást. Verziókezelés? Nem, az hogy megszámozott vagy dátumozott mappákba rakod időnként az egész projekted az borzalom, hidd el, agyvérzést fogsz kapni tőle.</p>
+<p>Giten akár lépésenként nyomom tudod követni a kód változásaid (ha commitolod őket), vissza is tudod állítani előző állapotra stb stb. Magáról a Gitezésről <a href="https://docs.github.com/en/get-started/quickstart/hello-world">ezen a linken</a> olvashatsz bővebben.</p>
+<p>Az első lépésed itt legyen az, hogy beregisztrálsz <a href="https://github.com/">Github</a>-ra, és letöltöd a gépedre a <a href="https://desktop.github.com/">Github Desktop</a> appot.</p>
+<h3 id="szerver">Szerver</h3>
+<p>Hogy ezt a tutorial sorozatot végig tudd csinálni rendesen, érdemes valami lokális szervert feltelepíteni, én a <a href="https://www.apachefriends.org/download.html">XAMPP</a>-ot ajánlom. Itt a rendszerednek megfelelőt szedd le, például a 7.4.28-as verziót, vagy éppen ami a legfrissebb.</p>
+<h3 id="editor-program">Editor program</h3>
+<p>Hát nyilván azért ne notepad-be szerkesszük a kódunkat, rakjunk fel valami értelmest, én a <a href="https://code.visualstudio.com/download">Visual Studio Code</a>-ot ajánlom. Illetve miután felraktad, bal oldalt az Extensions részben (4db kocka ikon) rakd fel a <code>vscode-icons</code> kiegészítőt, rak ikonokat minden féle fájlok meg mappák mellé, nagyon átláthatóvá teszi a projekted, must have cucc!</p>
+<h2 id="a-konfigol%C3%A1s">A konfigolás</h2>
+<p>Miután felraktunk mindent, <a href="https://github.com/">Github</a>-on hozzunk létre egy új <a href="https://github.com/new">Repository</a>-t, ide fogunk egyenlőre dolgozni. A neve lehet &quot;gyakorlas&quot; vagy bármi ilyesmi.</p>
+<p>Amikor ezt létrehoztuk, a Github app-ban <code>clone</code>-ozzuk le az előbb létrehozott reponkat, lehetőleg valami egyszerű helyre, én pl a <code>C:\Files\Git\repodneve</code> helyre raknám.</p>
+<p>Miután ezzel is megvagyunk, nyissuk meg a <code>XAMPP Control Panel</code>-t. Az <code>Apache</code> sorában lévő <code>Config</code> gombra kattintva előjön egy menü, ahol válasszuk az <code>Apache (httpd.conf)</code> opciót. Ilyenkor megnyílik egy notepadbe egy konfig fájl, ahol megkéne keresned azokat a sorokat ahol ezt látod:</p>
+<pre class="hljs"><code><div># DocumentRoot: The directory out of which you will serve your
+# documents. By default, all requests are taken from this directory, but
+# symbolic links and aliases may be used to point to other locations.
+#
+DocumentRoot &quot;D:/Files/Git/vulkancapahu&quot;
+&lt;Directory &quot;D:/Files/Git/vulkancapahu&quot;&gt;
+</div></code></pre>
+<p>A <code>DocumentRoot</code> és <code>Directory</code> részbe írd bele a leklónozodd repod mappájának elérhetőségét, ahogy példának írtam fentebb is, ha ez megvan, mentsd el a fájlt és zárd be.</p>
+<p>Ezután a <code>XAMPP Control Panel</code>-ban az <code>Apache</code> sorában lévő <code>Start</code> gombra kattintva elindul a webszerverünk, melyet ki is tudunk próbálni, még pedig úgy, hogy a böngészőnkben a címsorban megnyitjuk a <code>localhost</code> címet. Ennyi, semmi www satöbbi, csak <code>localhost</code>.</p>
+<p>Természetesen ilyenkor még semmit se fogunk látni, mivel egy teljesen üres mappára mutat a böngészőnk. Nyissuk meg a <code>Visual Studio Code</code>-ot és hozzunk létre egy <code>index.html</code> fájlt a leklónozodd repo-nk mappájában, és valamit írjunk bele a fájlba. Mentsük el, és frissítsük a böngészőnkben a lapot. Ha látjuk a beleírt szöveget, mindent jól csináltunk!</p>
+<h2 id="a-tov%C3%A1bbiak">A továbbiak</h2>
+<p>Innentől kezdve neki állhatunk a többi doksit is tanulmányozni szépen sorjában. Fejlesztős böngészőnek egyébként a <code>Chrome</code>-ot ajánlom, mivel elég jó a fejlesztői konzolja (ezt az F12 gombbal tudod előhozni).</p>
+<h2 id="a-doksik-sorj%C3%A1ban">A doksik sorjában</h2>
+<ol start="0">
+<li><a href="https://univershitty.hu/webdev">Az első lépések</a></li>
+<li><a href="https://univershitty.hu/webdev/html">HTML</a></li>
+<li><a href="https://univershitty.hu/webdev/css">CSS</a></li>
+<li><a href="https://univershitty.hu/webdev/js">JS</a></li>
+<li><a href="https://univershitty.hu/webdev/php">PHP</a></li>
+</ol>
+
+</body>
+</html>

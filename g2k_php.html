@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Univershitty - Webdev - PHP</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+	/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+	/*---------------------------------------------------------------------------------------------
+	 *  Copyright (c) Microsoft Corporation. All rights reserved.
+	 *  Licensed under the MIT License. See License.txt in the project root for license information.
+	 *--------------------------------------------------------------------------------------------*/
+	
+	body {
+		font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+		font-size: var(--vscode-markdown-font-size, 14px);
+		padding: 0 26px;
+		line-height: var(--vscode-markdown-line-height, 22px);
+		word-wrap: break-word;
+		background-color: rgb(47, 47, 47);
+		color: rgb(215, 215, 215);
+	}
+	
+	#code-csp-warning {
+		position: fixed;
+		top: 0;
+		right: 0;
+		color: white;
+		margin: 16px;
+		text-align: center;
+		font-size: 12px;
+		font-family: sans-serif;
+		background-color:#444444;
+		cursor: pointer;
+		padding: 6px;
+		box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+	}
+	
+	#code-csp-warning:hover {
+		text-decoration: none;
+		background-color:#007acc;
+		box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+	}
+	
+	body.scrollBeyondLastLine {
+		margin-bottom: calc(100vh - 22px);
+	}
+	
+	body.showEditorSelection .code-line {
+		position: relative;
+	}
+	
+	body.showEditorSelection .code-active-line:before,
+	body.showEditorSelection .code-line:hover:before {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 0;
+		left: -12px;
+		height: 100%;
+	}
+	
+	body.showEditorSelection li.code-active-line:before,
+	body.showEditorSelection li.code-line:hover:before {
+		left: -30px;
+	}
+	
+	.vscode-light.showEditorSelection .code-active-line:before {
+		border-left: 3px solid rgba(0, 0, 0, 0.15);
+	}
+	
+	.vscode-light.showEditorSelection .code-line:hover:before {
+		border-left: 3px solid rgba(0, 0, 0, 0.40);
+	}
+	
+	.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+		border-left: none;
+	}
+	
+	.vscode-dark.showEditorSelection .code-active-line:before {
+		border-left: 3px solid rgba(255, 255, 255, 0.4);
+	}
+	
+	.vscode-dark.showEditorSelection .code-line:hover:before {
+		border-left: 3px solid rgba(255, 255, 255, 0.60);
+	}
+	
+	.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+		border-left: none;
+	}
+	
+	.vscode-high-contrast.showEditorSelection .code-active-line:before {
+		border-left: 3px solid rgba(255, 160, 0, 0.7);
+	}
+	
+	.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+		border-left: 3px solid rgba(255, 160, 0, 1);
+	}
+	
+	.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+		border-left: none;
+	}
+	
+	img {
+		max-width: 100%;
+		max-height: 100%;
+	}
+	
+	a {
+		text-decoration: none;
+		color: rgb(133, 133, 255);
+	}
+	
+	a:hover {
+		text-decoration: underline;
+	}
+	
+	a:focus,
+	input:focus,
+	select:focus,
+	textarea:focus {
+		outline: 1px solid -webkit-focus-ring-color;
+		outline-offset: -1px;
+	}
+	
+	hr {
+		border: 0;
+		height: 2px;
+		border-bottom: 2px solid;
+	}
+	
+	h1 {
+		padding-bottom: 0.3em;
+		line-height: 1.2;
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+		border-color: rgb(106, 106, 106);
+	}
+	
+	h1, h2, h3 {
+		font-weight: normal;
+	}
+	
+	table {
+		border-collapse: collapse;
+	}
+	
+	table > thead > tr > th {
+		text-align: left;
+		border-bottom: 1px solid;
+	}
+	
+	table > thead > tr > th,
+	table > thead > tr > td,
+	table > tbody > tr > th,
+	table > tbody > tr > td {
+		padding: 5px 10px;
+	}
+	
+	table > tbody > tr + tr > td {
+		border-top: 1px solid;
+	}
+	
+	blockquote {
+		margin: 0 7px 0 5px;
+		padding: 0 16px 0 10px;
+		border-left-width: 5px;
+		border-left-style: solid;
+	}
+	
+	code {
+		font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+		font-size: 1em;
+		line-height: 1.357em;
+	}
+	
+	body.wordWrap pre {
+		white-space: pre-wrap;
+	}
+	
+	pre:not(.hljs),
+	pre.hljs code > div {
+		padding: 16px;
+		border-radius: 3px;
+		overflow: auto;
+	}
+	
+	pre code {
+		color: var(--vscode-editor-foreground);
+		tab-size: 4;
+	}
+	
+	/** Theming */
+	
+	.vscode-light pre {
+		background-color: rgba(220, 220, 220, 0.4);
+	}
+	
+	.vscode-dark pre {
+		background-color: rgba(10, 10, 10, 0.4);
+	}
+	
+	.vscode-high-contrast pre {
+		background-color: rgb(0, 0, 0);
+	}
+	
+	.vscode-high-contrast h1 {
+		border-color: rgb(0, 0, 0);
+	}
+	
+	.vscode-light table > thead > tr > th {
+		border-color: rgba(0, 0, 0, 0.69);
+	}
+	
+	.vscode-dark table > thead > tr > th {
+		border-color: rgba(255, 255, 255, 0.69);
+	}
+	
+	.vscode-light h1,
+	.vscode-light hr,
+	.vscode-light table > tbody > tr + tr > td {
+		border-color: rgba(0, 0, 0, 0.18);
+	}
+	
+	.vscode-dark h1,
+	.vscode-dark hr,
+	.vscode-dark table > tbody > tr + tr > td {
+		border-color: rgba(255, 255, 255, 0.18);
+	}
+	
+	</style>
+	
+	<style>
+	/* Tomorrow Theme */
+	/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+	/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+	
+	/* Tomorrow Comment */
+	.hljs-comment,
+	.hljs-quote {
+		color: #8e908c;
+	}
+	
+	/* Tomorrow Red */
+	.hljs-variable,
+	.hljs-template-variable,
+	.hljs-tag,
+	.hljs-name,
+	.hljs-selector-id,
+	.hljs-selector-class,
+	.hljs-regexp,
+	.hljs-deletion {
+		color: #c82829;
+	}
+	
+	/* Tomorrow Orange */
+	.hljs-number,
+	.hljs-built_in,
+	.hljs-builtin-name,
+	.hljs-literal,
+	.hljs-type,
+	.hljs-params,
+	.hljs-meta,
+	.hljs-link {
+		color: #f5871f;
+	}
+	
+	/* Tomorrow Yellow */
+	.hljs-attribute {
+		color: #eab700;
+	}
+	
+	/* Tomorrow Green */
+	.hljs-string,
+	.hljs-symbol,
+	.hljs-bullet,
+	.hljs-addition {
+		color: #718c00;
+	}
+	
+	/* Tomorrow Blue */
+	.hljs-title,
+	.hljs-section {
+		color: #4271ae;
+	}
+	
+	/* Tomorrow Purple */
+	.hljs-keyword,
+	.hljs-selector-tag {
+		color: #8959a8;
+	}
+	
+	.hljs {
+		display: block;
+		overflow-x: auto;
+		color: #c6c6c6;
+		padding: 0.5em;
+	}
+	
+	.hljs-emphasis {
+		font-style: italic;
+	}
+	
+	.hljs-strong {
+		font-weight: bold;
+	}
+	</style>
+	
+	<style>
+	/*
+	 * Markdown PDF CSS
+	 */
+	
+	 body {
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+		padding: 0 12px;
+	}
+	
+	pre {
+		background-color: #222222;
+		border: 1px solid #000000;
+		border-radius: 3px;
+		overflow-x: auto;
+		white-space: pre-wrap;
+		overflow-wrap: break-word;
+	}
+	
+	pre:not(.hljs) {
+		padding: 23px;
+		line-height: 19px;
+	}
+	
+	blockquote {
+		background: rgba(127, 127, 127, 0.1);
+		border-color: rgba(0, 122, 204, 0.5);
+	}
+	
+	.emoji {
+		height: 1.4em;
+	}
+	
+	code {
+		font-size: 14px;
+		line-height: 19px;
+	}
+	
+	/* for inline code */
+	:not(pre):not(.hljs) > code {
+		color: #C9AE75; /* Change the old color so it seems less like an error */
+		font-size: inherit;
+	}
+	
+	/* Page Break : use <div class="page"/> to insert page break
+	-------------------------------------------------------- */
+	.page {
+		page-break-after: always;
+	}
+	
+	</style>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="php">PHP</h1>
+<p>Na ha túlszenvedted magad a JavaScript doksin, igazából itt már nem fogsz megszakadni, mert ennek a doksinak egy része elég repetitív lesz. Konkrétan amit átvettünk az előző doksiba átemeljük php-ba, kezdjük is:</p>
+<h2 id="mi-az-a-php">Mi az a PHP?</h2>
+<p>A PHP egy internet által nagyrészt használt programozási nyelv, mely backend-en fut, és van annyira erős hogy komplex projektekre is alkalmas legyen. Például tudtad hogy a Facebook is PHP-val készült?! Oké a Facebook egy rák, de na, azért mégis csak nagy cucc és ezzel megy, szóval itt a lehetőséged hogy alkoss valamit jobbat! De hogyan is nézki egy PHP fájl? Először is, fusson a gépeden a XAMPP az Apache-al elindítja, és legyen egy <code>index.php</code> fájlod amibe most írd bele ezt:</p>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;PHP gyakorló oldalam&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+
+        &lt;?php
+            echo &quot;Sup bro, PHP-ból lettem kiírva!&quot;;
+        ?&gt;
+
+    &lt;/body&gt;
+&lt;/html&gt;
+</div></code></pre>
+<p>Most azt fogod látni hogy PHP-ból sikeresen kiírtál egy szöveget HTML-be! Ezzel az alapkóddal igazából mehetsz is tovább a doksi további részében gyakorolni.</p>
+<h1 id="az-alapok">Az alapok</h1>
+<h2 id="v%C3%A1ltoz%C3%B3k">Változók</h2>
+<p>Ahogy azt már a JS doksiban is olvashattad, minden programozási nyelvben vannak változók. Változóknak nevezzük azt, amiben valamilyen értéket vagy adatok tárolunk, legyen az szöveg, vagy szám stb. Nézzünk példát:</p>
+<pre class="hljs"><code><div>&lt;?php
+$txt = &quot;univershitty.hu&quot;;
+echo &quot;Legjobb egyetem a &quot; . $txt . &quot;!&quot;;
+//Legjobb egyetem a univershitty.hu!
+?&gt;
+</div></code></pre>
+<p>Itt azt láthatjuk hogy létrehoztunk egy változót majd ki is irattuk az értékét echo-val! Nézzük még pár példát változókra:</p>
+<pre class="hljs"><code><div>&lt;?php
+$text = &quot;Ez a sima string szöveg&quot;;
+$number = 69; //nice
+$array = [&quot;Ez&quot;, &quot;egy&quot;, &quot;tömb!&quot;];
+$boolval = true;
+
+$person = [&quot;Name&quot;=&gt;&quot;Jani&quot;, &quot;Age&quot;=&gt;41, &quot;Place&quot;=&gt;&quot;Budapest&quot;];
+//Ez pedig egy asszociatív tömb
+?&gt;
+</div></code></pre>
+<p>Ezeket fogjuk használni majd, jó ha ezeket tudod. PHP változó-t mint láthatod $ jellel kezded, beírod a nevét, és utána az értéket amit meg akarsz adni neki.</p>
+<p><strong>PHP változó nevek létrehozásának a szabályai:</strong></p>
+<ul>
+<li>A változó mindig $ jellel kezdődik, közvetlen utána a nevével</li>
+<li>A változó neve betűvel vagy _ -al kell kezdődjön</li>
+<li>A változó neve nem kezdődhet számmal</li>
+<li>A változó betűket, számokat és _ -t tartalmazhat (A-z, 0-9 és _)</li>
+<li>A változó nevek case-sensitive-ek, szóval a <code>$age</code> és <code>$AGE</code> két külön változónak számít!</li>
+</ul>
+<h2 id="hogyan-iratjuk-ki-a-v%C3%A1ltoz%C3%B3kat">Hogyan iratjuk ki a változókat?</h2>
+<p>Vegyük példának az előző kódunk:</p>
+<pre class="hljs"><code><div>&lt;?php
+$text = &quot;Ez a sima string szöveg&quot;;
+$number = 69; //nice
+echo $text;
+echo $number;
+
+$array = [&quot;Ez&quot;, &quot;egy&quot;, &quot;tömb!&quot;];
+print_r($array);
+//a print_r-el az egész tömböt kiiratjuk
+echo $array[1];
+//itt pedig kiirattuk a második elemét a tömbnek
+
+$boolval = true;
+echo $boolval;
+
+$person = [&quot;Name&quot;=&gt;&quot;Jani&quot;, &quot;Age&quot;=&gt;41, &quot;Place&quot;=&gt;&quot;Budapest&quot;];
+//Ez pedig egy asszociatív tömb
+print_r($person);
+//Ezzel kiirattuk az egész tömböt
+echo $person[&quot;name&quot;];
+//Ezzel pedig kiiratuk a tömb &quot;name&quot; értékét
+?&gt;
+</div></code></pre>
+<h2 id="asszociat%C3%ADv-t%C3%B6mb%C3%B6k">Asszociatív tömbök</h2>
+<p>JS-ben már megismerkedhettünk az alap változókkal, amik ugyan azok mint itt is, példát adtam rá, ugyan azt a megfogalmazást mégegyszer nem írom le. Viszont az asszociatív tömböket itt kiemelném, még pedig azért is mert jó ha ezt tudjuk hogy működik, mivel majd később amikor adatbázisból olvasunk ki adatot, azt is ugyan így fogjuk vissza kapni!</p>
+<pre class="hljs"><code><div>&lt;?php
+$person = [&quot;Name&quot;=&gt;&quot;Jani&quot;, &quot;Age&quot;=&gt;41, &quot;Place&quot;=&gt;&quot;Budapest&quot;];
+?&gt;
+</div></code></pre>
+<p>A fenti példában egy asszociatív tömböt láthatunk, ez annyiban különbözik a sima tömbtől, hogy még a sima tömbben számokkal azonosítjuk melyik tömb elemre vagyunk kíváni, itt minden tömb elemnek van egy neve, és később azokkal azonosítjuk/hívjuk meg őket, például itt most kiiratom a nevet és az életkort:</p>
+<pre class="hljs"><code><div>&lt;?php
+$person = [&quot;Name&quot;=&gt;&quot;Jani&quot;, &quot;Age&quot;=&gt;41, &quot;Place&quot;=&gt;&quot;Budapest&quot;];
+echo $person[&quot;Name&quot;];
+echo $person[&quot;Age&quot;];
+?&gt;
+</div></code></pre>
+<h1 id="oper%C3%A1torok-%C3%A9s-v%C3%A1ltoz%C3%B3k-kezel%C3%A9se">Operátorok és változók kezelése</h1>
+<p>Az operátorok és a változók kezelése szintén hót ugyan az mint JavaScript-ben, csak ugye még ott a változók <code>var valami</code>-k voltak, itt <code>$valami</code> lesz. De azért nézzünk rá példát.</p>
+<h2 id="%C3%A9rt%C3%A9k-v%C3%A1ltoztat%C3%B3-oper%C3%A1torok">Érték változtató operátorok</h2>
+<p><strong>= jel operátor</strong></p>
+<p>Ezzel adunk meg értéket egy változónak.</p>
+<pre class="hljs"><code><div>$valami = &quot;csirip&quot;;
+</div></code></pre>
+<p><strong>+ és . operátor</strong></p>
+<p>Na itt már jön egy fricska, még JS-ben csak + jellel adtunk össze dolgokat, itt már a . (pont) is jön. De miben különböznek?</p>
+<pre class="hljs"><code><div>&lt;?php
+$text1 = &quot;Kiscica&quot;;
+$text2 = &quot;Kiskutya&quot;;
+$texts = $text1.$text2; //KiscicaKiskutya
+
+$number1 = 5;
+$number2 = 2;
+$sum = $number1+$number2; //7
+$sum2 = $number1.$number2; //52
+?&gt;
+</div></code></pre>
+<p>A fenti példában is látható, hogy még . -al egymás mellé raktam a változókat, a +-al szám változókat adtam össze. Erre láthatod a példában hogy mi történt amikor a két számot +-al és .-al adtam össze. Így tudsz változókat összerakni PHP-ban, de nézzünk még erre példát:</p>
+<pre class="hljs"><code><div>&lt;?php
+$text1 = &quot;Kiscica&quot;;
+$text2 = &quot;Kiskutya&quot;;
+$texts = &quot;A &quot;.$text1.&quot; nem mindig &quot;.$text2.&quot;!&quot;;
+echo $texts; //A Kiscica nem mindig Kiskutya!
+?&gt;
+</div></code></pre>
+<p>Itt arra láthatunk példát hogy sima szöveget és változókat rendeltünk össze, majd 1 szövegként kezeltük őket és kiirattuk őket! Viszont felmerülhet benned, hogy jó jó szöveget iratok ki, de mivan ha én &quot;-t azaz macskakörmöt is megakarok jeleníteni a szövegben? Mert mondjuk HTML-t akarok generálni és ugye abba lehetnek macskakörmök az attribútumok miatt? Semmi gond!</p>
+<pre class="hljs"><code><div>&lt;?php
+$text = &quot;Kiscica&quot;;
+$texts = &quot;&lt;a href=\&quot;https://www.google.com/keressmagadnak\&quot;&gt;&quot;.$text.&quot;&lt;/a&gt;&quot;;
+echo $texts;
+?&gt;
+</div></code></pre>
+<p>Ennek az eredménye lett az hogy: <code>&lt;a href=&quot;https://www.google.com/keressmagadnak&quot;&gt;Kiscica&lt;/a&gt;</code> ami egy HTML kompatibilis &quot;szöveg&quot; amit kiirattunk. Mint látodhatod, a macskakörmöt a szövegen belül úgy belenítettük meg hogy eléraktunk egy \ jelet, majd pontokkal összeraktuk a szöveget még változóval kiegészítve.</p>
+<p><strong>További operátorok</strong></p>
+<p>Ahogy már azt fentebb is említettem, a JavaScript-ben használható operátorok 1:1 megegyeznek a PHP-sokkal. De, nézzünk azért 1-2 példát:</p>
+<pre class="hljs"><code><div>&lt;?php
+//ez ugye a += operátorunk
+$number1 = 2;
+$number2 = 5;
+$number1 += 5;
+echo $number1; //7
+
+//Itt ugye az else ág fog lefutni mert nem igaz a feltétel...
+if ($number1 == $number2) {
+    echo &quot;Egyenlő volt a két szám&quot;;
+} else {
+    echo &quot;Nem volt egyenlő a két szám&quot;;
+}
+
+//Itt pedig igaz lesz a feltétel
+if ($number1 &lt; $number2) {
+    echo &quot;Az első szám kissebb mint a második&quot;;
+}
+?&gt;
+</div></code></pre>
+<p><strong>+= és .= operátorok</strong></p>
+<p>JavaScript-ben már megismerkedhettünk a <strong>+=</strong> operátorral, amivel a meglévő változó adatához újabb számot vagy szöveget tudtunk hozzáadni. Na ugye JS-ben a szövegre IS += operátort használtunk, PHP-ban viszont szöveg hozzáadáshoz már a <strong>.=</strong> operátort kell használni. Példa:</p>
+<pre class="hljs"><code><div>&lt;?php
+$text = &quot;Kiscica&quot;;
+$text .= &quot; és Kiskutya&quot;;
+echo $text; //Kiscica és Kiskutya
+
+$number = 5;
+$number += 3;
+echo $number; //8
+?&gt;
+</div></code></pre>
+<h1 id="if-for-while">if, for, while</h1>
+<p>A címben említett funkciók is ugyan azzal működéssel bírnak mint javascriptben, írok rájuk azért 1-1 példát:</p>
+<pre class="hljs"><code><div>$number1 = 2;
+$number2 = 5;
+
+//Itt ugye az else ág fog lefutni mert nem igaz a feltétel...
+if ($number1 == $number2) {
+    echo &quot;Egyenlő volt a két szám&quot;;
+} else {
+    echo &quot;Nem volt egyenlő a két szám&quot;;
+}
+
+for ($i = 0; $i &lt; 100; $i++) {
+    echo $i.&quot;. For ciklus eheeh\n&quot;;
+}
+
+$name = &quot;Jani&quot;;
+
+switch ($name) {
+    case &quot;Béla&quot;:
+        echo &quot;Ő Béla&quot;;
+        break;
+    case &quot;Jani&quot;:
+        echo &quot;Ő Jani&quot;;
+        break;
+    case &quot;Zoli&quot;:
+        echo &quot;Ő Zoli&quot;;
+        break;
+    case &quot;Árpád&quot;:
+        echo &quot;Ő Árpád&quot;;
+        break;
+    case &quot;Pisti&quot;:
+        echo &quot;Ő Pisti&quot;;
+        break;
+    default:
+        echo &quot;Egyik sem!&quot;;
+}
+</div></code></pre>
+<p>Látjátok? Ugyan az mint amit JS-ben tanultatok, csak ugye a PHP-s változókat írjuk bele, na meg ugye ott console.log-al irattam ki a példákat, itt echo-val.</p>
+<h1 id="php-related-things">PHP related things</h1>
+<p>Na most hogy túlszenvedted magad a repetitív részen, nézzük milyen újdonságok vannak a PHP-ba.</p>
+<h2 id="tartalom-megjelen%C3%ADt%C3%A9se-php-b%C3%B3l-html-be">Tartalom megjelenítése PHP-ból HTML-be</h2>
+<p>Kezdjük valami nagyon egyszerűvel. Először is látnod kell egy szemléletet magad előtt: A böngésződ egy kész HTML kódot kap, azt jeleníti meg, a PHP-t nem a böngésződ futtatja le, hanem a háttérbe a szerver, az ad vissza neked HTML kódot amit tud értelmezni a böngésződ. Szóval amikor megjeleníteni kívánt tartalmat kívánsz csinálni és generálni PHP-val, úgy gondolkodj, hogy te HTML kódot generálsz ki ezzel. Nézzünk meg egy primitív példát:</p>
+<p>Hozzunk létre egy index.php fájlt és legyen ez a tartalma:</p>
+<pre class="hljs"><code><div>&lt;?php
+$website_name = &quot;Szikrázó Elefánt&quot;;
+?&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;&lt;?php echo $website_name; ?&gt;&lt;/title&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Üdv a &lt;i&gt;&lt;?php echo $website_name; ?&gt;&lt;/i&gt; oldalon!&lt;/h2&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</div></code></pre>
+<p>Na itt most ügyesen az oldal tetején létrehoztunk egy változót, benne az oldal nevével, és mi ügyes kis lusta programozók vagyunk, ugyan azt a szöveget nem fogjuk kézzel sok helyre kiírni sokszor, ezt egy változóval helyettesítettük a helyét. A HTML részében a kódnak láthatjuk, hogy ahova kiakartam iratni a változót, oda mindig nyitottam és csuktam és PHP kód részletet, így tudtam ki &quot;echo&quot;-zni a változónkat amit felül hoztam létre, biztonság kedvéért hogy jobban megértsd, a fenti php-s kódot így kapja meg a böngésző most:</p>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Szikrázó Elefánt&lt;/title&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Üdv a &lt;i&gt;Szikrázó Elefánt&lt;/i&gt; oldalon!&lt;/h2&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</div></code></pre>
+<p>Mint láthatjuk ezt simán kézzel is létrehozhattuk volna, de mi ügyesek vagyunk, és PHP-ból alkottuk!</p>
+<p>Nézzünk meg még egy olyan példát, hogy az oldalunk címét én 100-szor kívánom kiiratni az oldalra egymás alá:</p>
+<pre class="hljs"><code><div>&lt;?php
+$website_name = &quot;Szikrázó Elefánt&quot;;
+?&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;&lt;?php echo $website_name; ?&gt;&lt;/title&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;/head&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Üdv a &lt;i&gt;&lt;?php echo $website_name; ?&gt;&lt;/i&gt; oldalon!&lt;/h2&gt;
+
+&lt;?php
+for ($i = 0; $i &lt; 100; $i++) {
+    echo &quot;&lt;p&gt;&quot;.$i.&quot;. &quot;.$website_name.&quot;&lt;/p&gt;&quot;;
+}
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</div></code></pre>
+<p>Na ha ezt most lefuttatod látod hogy 100-szor kiírtuk az oldal címét egymás alá, és akkor ez most HTML-be úgy nézki hogy.... Hallod, nem, isten bizony nem írom le ezt a kódot, nézd meg a böngésződ inspectorjában és hidd el:D A koncepció ugye az volt most, hogy egy HTML tag-et generáltam ki 100-szor, benne azzal hogy hanyadik sornál járok meg a weboldal címe változónk ugyebár.</p>
+<p>Na most hogy megvagyunk azzal a koncepcióval hogy kell PHP-ból HTML-be kiírni dolgokat, vágjunk bele egy kicsit extrémebb dologba: Csatlakozzunk SQL adatbázishoz és irassunk ki onnan tartalmat!</p>
+<h1 id="n%C3%A9h%C3%A1ny-hasznos-cucc-php-ban">Néhány hasznos cucc PHP-ban</h1>
+<p>Ezeket jó ha tudod, hasznos kis cuccok, sok jóság létrehozásában segítenek.</p>
+<h2 id="intval">intval()</h2>
+<p>Az <code>intval()</code> függvényt arra szoktam használni hogy leellenőrizzem hogy egy adott változó tuti szám-e. Na most ez úgy működik hogy egy változót kér be, aztán mindenféleképpen valami számot fog visszaadni. Példák:</p>
+<pre class="hljs"><code><div>&lt;?php
+echo intval(42);                      // 42
+echo intval(4.2);                     // 4
+echo intval('42');                    // 42
+echo intval('+42');                   // 42
+echo intval('-42');                   // -42
+echo intval('asd');                   // 0
+echo intval('asd123');                // 0
+?&gt;
+</div></code></pre>
+<p>Ha mondjuk szöveg kerül bele akkor 0-át fog visszaadni. Ez tökjó kiszűrni user inputokat, ahol mondjuk a HTML-ből csak számot kérnénk vissza, de mókás gyerek ismeri az inspectort és szöveget írna be, akkor ezzel letudod szűrni hogy te mondjuk az adatbázis fele mindenféleképpen számot küldj tovább, legrosszabb esetben egy 0-át.</p>
+<h2 id="mbstrlen">mb_strlen()</h2>
+<p>Az <code>mb_strlen()</code> függvényt stringek hosszúságának számolására használjuk. Azaz ha adunk neki egy szöveget, visszaadja számba hogy hány karakter hosszú. Példák:</p>
+<pre class="hljs"><code><div>&lt;?php
+$mystring = &quot;kiskutya&quot;;
+echo mb_strlen($mystring);            // 8
+?&gt;
+</div></code></pre>
+<p>Ezt én például arra szoktam használni, hogy amikor adatbázisból kiiratok valami adatot, megnézem ezzel milyen hosszú szöveget kaptam vissza. Mondjuk például várok valami youtube linket egy embedded videóhoz, és mondjuk csak akkor akarom kirenderelni ha 3-nál több karakter van abba a stringbe, ha mond 1 karakter pl csak béna volt és csak egy space-t írt bele, akkor ne jelenítsem meg.</p>
+<h2 id="header">header()</h2>
+<p>Ezzel HTTP header-öket lehet küldeni. Én ezt arra szoktam használni hogy elnavigáljam a user-t valamely másik oldalra. Kicsit bővebben lehet még <a href="https://www.w3schools.com/php/func_network_header.asp">olvasni itt</a> a funkcióiról. Példa amire én használom:</p>
+<pre class="hljs"><code><div>&lt;?php
+header(&quot;Location: /articles&quot;);
+//Ez az articles oldalra átnavigál minket, szóval ha pl www.vulkancapa.hu domainen vagyunk, akkor www.vulkancapa.hu/articles linkre visz át.
+header(&quot;Refresh:0&quot;);
+//Ezzel pedig teljesen újra töltjük a jelenlegi oldalt
+?&gt;
+</div></code></pre>
+<h2 id="isset">isset()</h2>
+<p>Ezzel lehet megnézni hogy egy változó-t létrehoztak-e vagy nem-e NULL az értéke. Ezt én speciel arra szoktam használni hogy megnézzem bevan-e jelentkezve a paraszt az oldalra, és annak függvényében jelenítem meg mondjuk a gombokat a status baron.</p>
+<pre class="hljs"><code><div>&lt;?php
+if(isset($_SESSION['login_user'])) {
+    //Ha a session-be létezik a bejelentkezett user akkor csinálok vmit
+}
+
+$valami = &quot;asd&quot;;
+if (isset($valami)) {
+    //Ez lefog futni mert létezik a $valami változó
+}
+
+if (isset($nemvalami)) {
+    //Ez pedig nem fog lefutni mert nincs $nemvalami változónk
+}
+?&gt;
+</div></code></pre>
+<p>Egyébként az <code>isset()</code> függvény mindig true-t vagy false-t return-öl, így if-ekbe teljesen alkalmas beépíteni ahogy a példában is volt.</p>
+<h2 id="htmlspecialchars">htmlspecialchars()</h2>
+<p>A <code>htmlspecialchars()</code> függvénybe kapott stringet... hogy is mondjam. Nyers html kompatibilissá teszi?... This makes no sense. Szóval konyhanyelven, ha adsz neki egy html stringet és te mondjuk ezt html-be kiakarod printelni, szal hogy a tag-eket is lásd, ezen keresztül nyomasd bele. Ez amúgy tökéletes sanitize-olni is a szöveget, mondjuk egy kis szöveg posztoló cuccot írsz html-be és nem akarod hogy html tageket irogáljanak bele a userek, ezzel nyomasd végig, de nézzük a példát úgy jobban megérted:</p>
+<pre class="hljs"><code><div>&lt;?php
+$test = &quot;&lt;a href='test'&gt;Test&lt;/a&gt;&quot;;
+$new = htmlspecialchars($test);
+echo $new; // &amp;lt;a href=&amp;#039;test&amp;#039;&amp;gt;Test&amp;lt;/a&amp;gt;
+echo $test; //próbáld ki!
+?&gt;
+</div></code></pre>
+<p>Ha ezt lefuttatod, látod hogy amit a példafüggvényünkön keresztül irattunk ki, azt ténylegesen látjuk a böngészőbe, amit pedig csak simán ki echo-ztunk, rendes HTML kódnak érzékelte!</p>
+<h2 id="funkci%C3%B3k">Funkciók</h2>
+<p>Ez egy igencsak fontos része hogy fain PHP kódokat írjunk, meg hogy ne ismételjük önmagunkat. Ha már felfogtad agyilag a JavaScript doksit, ez már nem lesz újdonság, csak megmutatom PHP-ba hogy tudsz ilyet írni.</p>
+<pre class="hljs"><code><div>function myfunction() {
+    echo &quot;Na ezt egy funkcióból echoztunk ki!&quot;;
+}
+
+myfunction();
+//És ha ezt meghívjuk, láthatjuk a szöveget... Azért ez ismerős a JS doksiból nem?!
+</div></code></pre>
+<p>Nézzünk most meg return funkciót is!</p>
+<pre class="hljs"><code><div>function myfunction() {
+    $myvar = &quot;Szövegünk&quot;;
+    return $myvar;
+}
+
+$something = myfunction();
+echo $something;
+//Ez pedig a &quot;Szövegünk&quot; szöveget fogja vissza returnölni.
+
+function myboolfunction() {
+    return true;
+}
+
+if (myboolfunction()) {
+    //Ez az if-ünk lefog futni mert a felső function true-t adott vissza.
+}
+</div></code></pre>
+<p>Most pedig nézzük meg azt, hogy változókat adunk át a funkciónak.</p>
+<pre class="hljs"><code><div>function sum(int $number1, int $number2) {
+    $summed = $number1 + $number2;
+    return $summed;
+}
+
+echo sum(1,2); //3
+</div></code></pre>
+<p>Ez a funkciók vár 2 változót, amivel kezd valamit, és returnöli az eredményt. Annyit láthatunk itt a JS-es funkciókkal szembe hogy itt LEHET megadni neki tipust, hogy mit várunk el! Itt van még egy példa:</p>
+<pre class="hljs"><code><div>function myfunction(bool $istrue, string $text) {
+    $mytextadd = &quot;nem volt igaz az istrue.&quot;;
+    if ($istrue) {
+        $mytextadd = &quot;igaz volt az istrue.&quot;;
+    }
+
+    return $text.&quot; és &quot;.$mytextadd;
+}
+
+echo myfunction(true,&quot;Heheheh&quot;); //Heheheh és igaz volt az istrue.
+</div></code></pre>
+<p>És ugye adhatunk meg neki bool-t, string-et, int-et, array-t, object-et stbstb...</p>
+<p>Még egy utolsó példa, hogy mivan akkor ha mondjuk egy olyan funkciót akarsz létrehozni ahova néha 1 néha 2 értéket kéne átadni?! Na tudsz olyat, hogy a funkció létrehozásánál egyből megadsz egy kezdőértéket a várni kívánt változónak, és ha meghívásnál nem kapja meg, azt fogja használni és nem fog sírni hogy kevesebb argumentet kapott.</p>
+<pre class="hljs"><code><div>function myfunction(string $text, string $text2 = &quot;Nem adtál meg szöveget&quot;) {
+    $mytext = $text.$text2;
+    return $mytext;
+}
+
+echo myfunction(&quot;valami&quot;); //valamiNem adtál meg szöveget
+echo myfunction(&quot;valami&quot;,&quot;adtam meg szöveget&quot;); //valamiadtam meg szöveget
+</div></code></pre>
+<h2 id="funkci%C3%B3k-%C3%A9s-egy%C3%A9b-k%C3%B3dok-kiszervez%C3%A9se-k%C3%BCl%C3%B6n-f%C3%A1jlokba">Funkciók és egyéb kódok kiszervezése külön fájlokba</h2>
+<p>Na most azt tudni illik hogy a jól átlátható kód részben azon is múlik, hogy nem egy darab fájlba van 4500 sornyi kód telefosva mert ember legyen a talpán aki ezt átlátja. Erről bővebben a másik doksiban olvashatsz ahogy kicsit részletesebben elmagyarázom hogy miért fontos hogy értelmes mappákba legyen szétszedve az oldalad, hogyan és miért darabold szét a css fájlaid stb. Na de nézzük meg most a PHP-s részt.</p>
+<p>Tegyük fel neked van egy kód részleted amit sok helyen akarsz használni (vagy akár már 2 helyen is), könyörgöm, nehogy elkezd le ctrl+c és ctrl+v-zni minden egyes helyre... Mert majd jön a felismerés hogy egyszer változtatni kéne rajta.</p>
+<p>mypage.php</p>
+<pre class="hljs"><code><div>&lt;?php
+function sum(int $number1, int $number2) {
+    $summed = $number1 + $number2;
+    return $summed;
+}
+
+echo sum(1,2); //3
+echo sum(2,2); //4
+?&gt;
+</div></code></pre>
+<p>anotherpage.php</p>
+<pre class="hljs"><code><div>&lt;?php
+function sum(int $number1, int $number2) {
+    $summed = $number1 + $number2;
+    return $summed;
+}
+
+echo sum(5,7); //12
+echo sum(1,8); //9
+?&gt;
+</div></code></pre>
+<p>Na most nem érzed kicsit furán hogy 2 külön oldalon is ledefiniáltad ugyan azt a kódot? Nem lenne egyszerűbb egy helyről használni őt? Há' dehogynem. Nézzünk meg egy példát ahol a <code>sum()</code> funkciónkat külön fájlba szedtem, majd a másik két oldalamba implementáltam:</p>
+<p>component_sum.php</p>
+<pre class="hljs"><code><div>&lt;?php
+function sum(int $number1, int $number2) {
+    $summed = $number1 + $number2;
+    return $summed;
+}
+?&gt;
+</div></code></pre>
+<p>mypage.php</p>
+<pre class="hljs"><code><div>&lt;?php
+include(&quot;component_sum.php&quot;);
+
+echo sum(1,2); //3
+echo sum(2,2); //4
+?&gt;
+</div></code></pre>
+<p>anotherpage.php</p>
+<pre class="hljs"><code><div>&lt;?php
+include(&quot;component_sum.php&quot;);
+
+echo sum(5,7); //12
+echo sum(1,8); //9
+?&gt;
+</div></code></pre>
+<p>Na itt most azt láthatjuk hogy a funkciónkat külön szedtem egy fájlba, majd azokat beincludeoltam azokba a fájlokba, ahol használni szeretném. Hogy kell ezt elképzelni, hogy működik? Amikor behúzod include-al a fájlt, olyan mintha oda annak a helyére kerülne a kód a másik fájlból, és akkor azt már tudja olvasni a php kódunk. Ugye sorrend itt is számít, szóval ne először hívd meg a funkciók és utána include-old meg nyilván nem fog működni.</p>
+<p>Érdemes tudni, hogy nem csak ez az egy módja van hogy behúzz egy másik php file-t a kódodba, mutatok 4 lehetőséget és felhasználási módját:</p>
+<pre class="hljs"><code><div>&lt;?php
+include(&quot;component_sum.php&quot;);
+//Az include-al simán behúzhatjuk a másik php fájlt, akár többször is egymás után, ez mondjuk arra jó ha mondjuk a HTML-ünkből valami HTML kódot többször akarunk berakni egymás után.
+
+include_once(&quot;component_sum.php&quot;);
+//Az include_once pedig ugyan azt csinálja mint a sima include, viszont csak EGYSZER töltődik be, többször még véletlenül se tudjuk.
+
+require(&quot;component_sum.php&quot;);
+//A require-el szintén ugyan úgy betudjuk tölteni a fájlt mint az include-al, viszont a kettő abban tér el egymással, hogy még ha include-al töltünk be valamit, és nem található a fájl, a kód tovább fut és csak egy hibát ír, viszont ha a require-nél nem találja a fájlt, a kód futása is leáll mivel kritikusan fontos fájlt akarunk betölteni amire mindenféleképpen szükségünk van az oldal működéséhez.
+
+require_once(&quot;component_sum.php&quot;);
+//Ugyan az mint az include_once, szintén csak egyszer töltődik be a fájl, viszont mint a sima require, mindenféleképpen bekell töltenie, anélkül nem fut tovább a kód. Ezt általában adatbázis csatlakozós file betöltéséhez szoktuk használni.
+?&gt;
+</div></code></pre>
+<h1 id="todo-csatlakoz%C3%A1s-adatb%C3%A1zishoz">TODO: Csatlakozás adatbázishoz</h1>
+<p>Na ha még ezt is felfogod, ezzel a tudással már képes leszel egy olyan weboldalt létrehozni mint a <a href="https://www.vulkancapa.hu">vulkancapa.hu</a>! Ez már egy kicsit komplexebb lesz, illetve szükség lesz pár php fájl létrehozására, továbbá erősen ajánlott hogy mielőtt ennek neki vágnál olvasd végig az SQL doksit. Írnám is miket hozz létre milyen tartalommal, aztán neki állok magyarázni:</p>
+<p>Ebben a fájlban definiáljuk le az adatbázis csatlakozást.</p>
+<p>connection.php</p>
+<pre class="hljs"><code><div>&lt;?php
+$servername = &quot;localhost:3306&quot;;
+$username = &quot;root&quot;;
+$password = &quot;&quot;;
+$dbname = &quot;mytestdb&quot;;
+$conn = new mysqli($servername, $username, $password, $dbname);
+$conn-&gt;set_charset(&quot;utf8&quot;);
+if ($conn-&gt;connect_error) {
+    die(&quot;Connection failed: &quot; . $conn-&gt;connect_error);
+}
+?&gt;
+</div></code></pre>
+<p>Miután ez megvan, <code>localhost/phpmyadmin</code>-ba hozzunk létre egy <code>mytestdb</code> nevű adatbázist, aztán futtassuk le rajta ezt a kódot:</p>
+<pre class="hljs"><code><div>CREATE TABLE my_articles (
+    id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    title varchar(255) NOT NULL,
+    summary varchar(255) NOT NULL,
+    content text,
+    published datetime
+);
+
+INSERT INTO my_articles (title, summary, content, published) VALUES ('Teszt cikk', 'Ez egy nagyon szép teszt cikknek a rövid összefoglalója!', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur libero in nunc consectetur, eget bibendum metus eleifend. Curabitur ligula massa, bibendum id varius ut, malesuada vitae diam. Donec non magna sit amet magna eleifend cursus. Phasellus ac egestas ante, eget egestas mauris. Pellentesque pretium velit at erat dapibus, quis pretium eros pellentesque. Phasellus suscipit lectus elit, ac varius lorem fermentum eleifend. Quisque in tincidunt sem. Proin nec laoreet quam, quis porttitor est.', '2021-12-28 12:34:56');
+
+INSERT INTO my_articles (title, summary, content, published) VALUES ('Még egy szép teszt cikk', 'Nyugi ennek a cikknek sincs értelmes mondani valója.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur libero in nunc consectetur, eget bibendum metus eleifend. Curabitur ligula massa, bibendum id varius ut, malesuada vitae diam. Donec non magna sit amet magna eleifend cursus. Phasellus ac egestas ante, eget egestas mauris. Pellentesque pretium velit at erat dapibus, quis pretium eros pellentesque. Phasellus suscipit lectus elit, ac varius lorem fermentum eleifend. Quisque in tincidunt sem. Proin nec laoreet quam, quis porttitor est.', '2021-12-28 13:51:31');
+</div></code></pre>
+<p>articleView.php</p>
+<pre class="hljs"><code><div>&lt;?php
+require(&quot;connection.php&quot;);
+
+$sql = &quot;SELECT title, summary, content, published FROM my_articles ORDER BY published DESC&quot;;
+$sql_read = $conn-&gt;prepare($sql);
+$sql_read-&gt;execute();
+$data_from_sql = $sql_read-&gt;get_result();
+
+if ($data_from_sql-&gt;num_rows &gt; 0) {
+    while($row = $data_from_sql-&gt;fetch_assoc()) {
+        echo &quot;&lt;div style=\&quot;width: 800px;\&quot;&gt;
+            &lt;h2&gt;&quot;.$row[&quot;title&quot;].&quot;&lt;/h2&gt;
+            &lt;b&gt;&quot;.$row[&quot;published&quot;].&quot;&lt;/b&gt;
+            &lt;p&gt;&quot;.$row[&quot;summary&quot;].&quot;&lt;/p&gt;
+            &lt;p&gt;&quot;.$row[&quot;content&quot;].&quot;&lt;/p&gt;
+            &lt;hr&gt;
+        &lt;/div&gt;&quot;;
+    }
+} else {
+    echo &quot;&lt;h2&gt;Nincs cikk!&lt;/h2&gt;&quot;;
+}
+?&gt;
+</div></code></pre>
+<p>Juhuuu! Ha ezeket ügyesen összeraktuk és megnyitjuk a <code>localhost/articleView.php</code> oldalt a böngészőnkben akkor látnunk kell a két cikkünket az oldalon! Tök jó hogy ezt most összeraktuk, de megkéne érteni mit csináltunk úgy hogy egyesével menjünk végig a fájlokon:</p>
+<h2 id="connectionphp">connection.php</h2>
+<p>Célszerű ezt az egészet egy külön fájlba kiszervezni mert úgy is rengeteg oldalon fogjuk használni.</p>
+<pre class="hljs"><code><div>&lt;?php
+//Hozzunk létre itt négy változót, amiben az átláthatóság kedvéért eltároljuk az adatbázis csatlakozáshoz szükséges adatokat
+//Ezek az adatok az alap XAMPP telepítéses címek, nyilván ez változhat, főleg amikor egy bérelt szerverre kitelepítjük az oldalunkat
+$servername = &quot;localhost:3306&quot;;
+$username = &quot;root&quot;;
+$password = &quot;&quot;;
+//Eme felső 3 adat az alap XAMPP-os telepítésnél mindig ez lesz, egyedül az adatbázis nevünk változhat, itt most egy mytestdb nevű adatbázist hozunk létre
+$dbname = &quot;mytestdb&quot;;
+
+//Itt egy változóba létrehozunk egy adatbázist csatlakozást a felső adatokkal megadva
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+//Ez a sor itt életed megmentője, hogy ne kelljen az ékezetes karakterek hibáival szarakodni
+$conn-&gt;set_charset(&quot;utf8&quot;);
+
+//És csináljunk egy ilyet is, hogy ha valami nem lenne jó adatbázis csatlakozásnál, írja ki a hibát
+if ($conn-&gt;connect_error) {
+    die(&quot;Connection failed: &quot; . $conn-&gt;connect_error);
+}
+?&gt;
+</div></code></pre>
+<h2 id="az-sql-k%C3%B3d">Az SQL kód</h2>
+<p>Hát itt most csak egy egyszerű SQL kódot írtam, ahol létrehoztunk egy egyszerű táblázatot és beletöltöttünk két adatot. Erről bővebben tájékozódhatsz az <strong>SQL doksiban</strong> ott úgy is levan írva minden.</p>
+<h2 id="articleviewphp">articleView.php</h2>
+<pre class="hljs"><code><div>&lt;?php
+//behúzzuk ugye a csatlakozást
+require(&quot;connection.php&quot;);
+
+//Én úgy szoktam hogy az átláthatóság kedvéért egy külön $sql nevű változóba írom bele az SQL kódot
+$sql = &quot;SELECT title, summary, content, published FROM my_articles ORDER BY published DESC&quot;;
+
+//Egy tetszőleges nevű változóba beletöltjük a mysqli-s adatbázis objektumunkat az SQL kóddal amit később kezelni fogunk
+$sql_read = $conn-&gt;prepare($sql);
+
+//itt lefuttatjuk az SQL commandot amit felül megadtunk
+$sql_read-&gt;execute();
+
+//get_result függvénnyel pedig az eredmény objektumot átadjuk szintén egy tetszőleges nevű változónak
+$data_from_sql = $sql_read-&gt;get_result();
+
+
+//leellenőrizzük hogy több sor tálatot kaptunk-e vissza a lekérdezésből mint 0, ha nem, akkor írjuk ki hogy nincs cikk
+if ($data_from_sql-&gt;num_rows &gt; 0) {
+    //Ha több sort kaptunk vissza mint 0, akkor egy while ciklussal soronként egy tömbbe átadjuk a találatokat
+    //Majd a ciklusban az asszociatív tömböt amit kaptunk bele, kiiratjuk az adatokat a megfelelő helyre
+    //Itt én most generáltam egy egyszerű kis html-t a cikkünk megjelenítésére
+    while($row = $data_from_sql-&gt;fetch_assoc()) {
+        echo &quot;&lt;div style=\&quot;width: 800px;\&quot;&gt;
+            &lt;h2&gt;&quot;.$row[&quot;title&quot;].&quot;&lt;/h2&gt;
+            &lt;b&gt;&quot;.$row[&quot;published&quot;].&quot;&lt;/b&gt;
+            &lt;p&gt;&quot;.$row[&quot;summary&quot;].&quot;&lt;/p&gt;
+            &lt;p&gt;&quot;.$row[&quot;content&quot;].&quot;&lt;/p&gt;
+            &lt;hr&gt;
+        &lt;/div&gt;&quot;;
+    }
+} else {
+    echo &quot;&lt;h2&gt;Nincs cikk!&lt;/h2&gt;&quot;;
+}
+?&gt;
+</div></code></pre>
+<h1 id="login">Login</h1>
+<p>Nézzünk meg egy hótegyszerű login-t. Először is csináljunk az adatbázisban egy táblát amiben parasztokat tárolunk:</p>
+<pre class="hljs"><code><div>CREATE TABLE my_users (
+    id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    username varchar(255) NOT NULL,
+    password varchar(255) NOT NULL,
+    displayname varchar(255) NOT NULL
+);
+
+INSERT INTO my_users (username, password, displayname) VALUES ('janiahegyrol','123','Jani');
+INSERT INTO my_users (username, password, displayname) VALUES ('bor','bicikli','Pepsi Béla');
+</div></code></pre>
+<h2 id="sessionphp">session.php</h2>
+<p>Ebben fogjuk eltárolni a bejelentkezett user adatait, illetve célszerű dolog a <code>connection.php</code>-t ebbe behúzni, és utánna minden fájlban a <code>session.php</code>-t includeolni mivel abban már benne lesz akkor a csatlakozás, és a bejelentkezett user adatai is.</p>
+<pre class="hljs"><code><div>&lt;?php
+require('connection.php');
+session_start();
+
+if(isset($_SESSION['login_user'])) {
+    $user_check = $_SESSION['login_user'];
+
+    $sql = &quot;SELECT id, username, displayname FROM my_users WHERE username=?&quot;;
+    $get_user = $conn-&gt;prepare($sql);
+    $get_user-&gt;bind_param(&quot;s&quot;, $user_check);
+    $get_user-&gt;execute();
+    $get_user_result = $get_user-&gt;get_result();
+    $row_get_user = $get_user_result-&gt;fetch_assoc();
+
+    $login_session_id = $row_get_user[&quot;id&quot;];
+    $login_session_username = $row_get_user[&quot;username&quot;];
+    $login_session_displayname = $row_get_user[&quot;id&quot;];
+}
+?&gt;
+</div></code></pre>
+<h2 id="loginphp">login.php</h2>
+<p>Csináljunk egy egyszerű bejelentkező oldalt is.</p>
+<pre class="hljs"><code><div>&lt;?php
+require('session.php');
+
+// Ha bevagyunk jelentkezve, ne tudjuk megnyitni a login oldalt
+if (isset($_SESSION['login_user'])){
+    header(&quot;location: /&quot;);
+}
+
+if($_SERVER[&quot;REQUEST_METHOD&quot;] == &quot;POST&quot;) {
+    // Lekérjük a változókat
+    $form_username = $_POST[&quot;username&quot;];
+    $form_password = $_POST[&quot;password&quot;];
+
+    // Nézzük meg létezik-e a felhasználó
+    // Ez vissza ad egy számot hány darab felhasználó van az adatbázisba
+    $get_exist = $conn-&gt;prepare(&quot;SELECT count(id) AS countid FROM my_users WHERE username=?&quot;);
+    $get_exist-&gt;bind_param(&quot;s&quot;, $form_username);
+    $get_exist-&gt;execute();
+    $result_exist = $get_exist-&gt;get_result();
+    $row_exist = $result_exist-&gt;fetch_assoc();
+    // Nyilvánvalóan 1-et kell kapnunk
+    if ($row_exist[&quot;countid&quot;] == 1) {
+        // Kérjük le a user adatait
+        $get_login = $conn-&gt;prepare(&quot;SELECT username, password FROM my_users WHERE username=?&quot;);
+        $get_login-&gt;bind_param(&quot;s&quot;, $form_username);
+        $get_login-&gt;execute();
+        $result_login = $get_login-&gt;get_result();
+        $row_login = $result_login-&gt;fetch_assoc();
+
+        // Kerüljük el a hibát hogy nem ad meg jelszót a user
+        if (mb_strlen($row_login[&quot;password&quot;]) &lt; 2) {
+            $row_login[&quot;password&quot;] = &quot;&quot;;
+        }
+    
+        // Ellenőrizzük le hogy egyezik-e a beírt jelszó az adatbázisban lévővel
+        if ($form_password == $row_login[&quot;password&quot;]) {
+            // Ha igen, töltsük be a Session-be a usernevet és küldjük a főoldalra a usert
+            $_SESSION[&quot;login_user&quot;] = $form_username;
+            header(&quot;Location: /&quot;);
+        } else {
+            $error = &quot;Nem megfelelő belépési adatok!&quot;;
+        }
+    } else {
+        // Ha 0 vagy valami érthetetlen okból több mint 1-et kapnánk vissza akkor dobjunk hibát
+        $error = &quot;Nem található ilyen felhasználó!&quot;;
+    }  
+}
+?&gt;
+
+&lt;form autocomplete=&quot;off&quot; action=&quot;login.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;?php
+        if(isset($error)) {
+            echo &quot;&lt;p class=\&quot;error-title\&quot;&gt;&quot;.$error.&quot;&lt;/p&gt;&quot;;
+        }
+    ?&gt;
+    &lt;p&gt;Felhasználónév&lt;/p&gt;
+    &lt;input type=&quot;text&quot; name=&quot;username&quot; maxlength=&quot;50&quot; placeholder=&quot;Felhasználónév&quot;&gt;
+    &lt;p&gt;Jelszó&lt;/p&gt;
+    &lt;input type=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;Jelszó&quot;&gt;
+    &lt;button type=&quot;submit&quot;&gt;Belépés&lt;/button&gt;
+&lt;/form&gt;
+</div></code></pre>
+<p>Létrehoztunk itt egy egyszerű bejelentkezést, a példából a HTML részen kihagytam most a body, html stb tageket a lényeg kedvéért, de amúgy ne hagyjuk ki. (Sőt, gyakorlásnak csináld meg rendesen!) Ezen példában csak a nyers jelszót hasonlítjuk össze, titkosítást most nem használunk, egyenlőre csak értsd meg önmagában hogy működik ez az egész, de ha érdekel, <a href="https://www.php.net/manual/en/function.password-verify.php">ezen a linken</a> megtalálod a jelszó ellenőrző függvényt.</p>
+<p>Ha ezzel megvagy és sikeres a login, legyen egy <code>index.php</code> fájlunk aminek ez a tartalma:</p>
+<pre class="hljs"><code><div>&lt;?php
+echo &quot;Üdv &quot;.$login_session_displayname.&quot;!&quot;;
+?&gt;
+</div></code></pre>
+<p>Amikor sikeres volt a bejelentkezés, ide kell hogy átvigyen az oldal, és ha minden rendben ment a bejelentkezett user nevét kell látnod a böngészőben.</p>
+<h1 id="logout">Logout</h1>
+<p>Ez egy nevetségesen egyszerű dolog lesz, csinálj egy <code>logout.php</code> fájlt:</p>
+<pre class="hljs"><code><div>&lt;?php
+ session_start();
+
+ if(session_destroy()) {
+    header(&quot;Location: /&quot;);
+ }
+?&gt;
+</div></code></pre>
+<p>...és ennyi. Amikor ez megnyitásra kerül, törli az aktuális user session-jét, azaz kijelentkezik a user, és visszakerülünk a főoldalra.</p>
+<h1 id="regisztr%C3%A1ci%C3%B3">Regisztráció</h1>
+<h1 id="email-k%C3%BCld%C3%A9s">Email küldés</h1>
+
+</body>
+</html>
